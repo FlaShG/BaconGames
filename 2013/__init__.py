@@ -2,6 +2,7 @@ import sfml as sf
 from classes.texturemanager import TextureManager as TM
 from classes.entity import SpriteEntity
 from classes.scene import Scene
+from classes.input import Input
 
 
 # create the main window
@@ -28,14 +29,18 @@ try:
 except IOError: exit(1)
 
 clock = sf.Clock()
+Input.define_axis('horizontal', sf.Keyboard.RIGHT, sf.Keyboard.LEFT)
 
 # start the game loop
 while window.is_open:
+    Input.update()
    # process events
     for event in window.events:
         # close window: exit
         if type(event) is sf.CloseEvent:
             window.close()
+        if type(event) is sf.KeyEvent:
+            Input.process_event(event)
 
     dt = clock.elapsed_time
     clock.restart()

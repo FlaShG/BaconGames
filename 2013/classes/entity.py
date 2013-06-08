@@ -1,4 +1,5 @@
 import sfml as sf
+from classes.input import Input
 
 class Entity(sf.Transformable):
     def __init__(self):
@@ -62,5 +63,5 @@ class SpriteEntity(Entity):
         
     def update(self, dt):
         #self.position += sf.Vector2(dt * 100, 0)
-        self.rotation += dt * 180
+        self.rotation += dt * 180 * Input.get_axis("horizontal")
         
