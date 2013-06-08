@@ -5,7 +5,11 @@ class Scene(object):
         self.entities = []
         
     def add(self, entity):
-        self.entities.append(entity)
+        try:
+            for element in entity:
+                self.entities.append(element)
+        except:
+            self.entities.append(entity)
     
     def process(self, window, dt):
         for e in self.entities:
