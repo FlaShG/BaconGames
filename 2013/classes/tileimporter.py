@@ -12,6 +12,8 @@ class TileImporter():
         tilegroups = []
         data = json.load(file)
 
+        layer = -100
+        
         for l in data['layers']:
             if(l['type'] == 'tilelayer'):
                 tilesets = []
@@ -20,6 +22,8 @@ class TileImporter():
 
                 tilesets.sort(key=lambda x: x['firstgid'], reverse=True)
 
-                tilegroups.append(TileGroup(l['width'], l['data'], tilesets))
+                tilegroups.append(TileGroup(l['width'], l['data'], tilesets, layer))
+                layer += 1
 
+                
         return tilegroups
