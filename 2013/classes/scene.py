@@ -11,4 +11,4 @@ class Scene(object):
         for e in self.entities:
             e.onupdate(dt)
         for e in self.entities:
-            e.ondraw(window, sf.Transform())
+            e.ondraw(window, sf.Transform().translate(window.size/2))
