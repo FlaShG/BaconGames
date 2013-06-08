@@ -1,7 +1,7 @@
 
 TODOS:
 * Tiled Importer [Lars]
-* Tilesets [Lars]
+* Tilesets [Ina]
 * Player Code [Anne]
 * Player design []
 * Build in pybox2D [Sascha]

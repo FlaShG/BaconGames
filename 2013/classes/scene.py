@@ -1,20 +1,41 @@
 import sfml as sf
+from classes.entity import Entity
 
 class Scene(object):
     def __init__(self):
-        self.entities = []
+        self.entities = set()
+        self.camera = None
+        self.set_camera(Camera())
 
-    def add(self, entity):
+    def addall(self, entities):
         try:
-            for element in entity:
-                self.entities.append(element)
-        except:
-            self.entities.append(entity)
+            for entity in entities:
+                self.add(entity)
+        except: pass
+        
+    def add(self, entity):
+        if(not entity in self.entities):
+            self.entities.add(entity)
+        
+        
+            
+    def set_camera(self, camera):
+        self.camera = camera
+        self.add(camera)
 
 
     def process(self, window, dt):
         for e in self.entities:
             e.onupdate(dt)
         for e in self.entities:
-            scale = window.height / 20.0
-            e.ondraw(window, sf.Transform().translate(window.size/2.0).scale(sf.Vector2(scale, scale)))
+            scale = window.height / 20.0 * self.camera.zoom
+            e.ondraw(window, sf.Transform().translate(window.size/2.0 - self.camera.position).scale(sf.Vector2(scale, scale)))
+
+            
+class Camera(Entity):
+    def __init__(self):
+        super(Camera, self).__init__()
+        self.zoom = 1
+        
+    def update(self, dt):
+        self.move(sf.Vector2(0,1) * dt * 10)
