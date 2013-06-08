@@ -1,0 +1,6 @@
+
+TODOS:
+* Transform Multiplication [Lars]
+* Sprite Transformation [Sascha]
+* World Space Coordinates []
+* Texture Manager []
