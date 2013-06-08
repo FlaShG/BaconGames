@@ -103,5 +103,5 @@ class SpriteEntity(Entity):
         
         
 class ScreenSpriteEntity(SpriteEntity):
-    def draw(self):
+    def draw(self, window, transform):
         window.draw(self.sprite, sf.RenderStates(transform=self.global_transform))
