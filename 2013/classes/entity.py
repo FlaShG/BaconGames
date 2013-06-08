@@ -53,7 +53,6 @@ class Entity(Object, sf.Transformable):
         pass
 
 
-
 class SpriteEntity(Entity):
     def __init__(self, layer=0,
                        color=sf.Color.WHITE,
@@ -61,7 +60,7 @@ class SpriteEntity(Entity):
         super(SpriteEntity, self).__init__(layer)
         (sf.Sprite, self).__init__(texture=texture)
         
-        self.sprite = sf.Sprite(texture) if texture != None else sf.Sprite()
+        self.sprite = sf.Sprite(texture)
         self.sprite.color = color
         self.ratio = sf.Vector2(1.0, 1.0)
         self.origin = sf.Vector2(0.5, 0.5)
@@ -123,3 +122,4 @@ class ScreenSpriteEntity(SpriteEntity):
     def windowed_ratio(self, window):
         return sf.Vector2((self._ratio.x*1.0) / self.texture_rectangle.width * (window.width if self.fullscreen else window.height),
                                               (self._ratio.y*1.0) / self.texture_rectangle.height * window.height)
+                                              
