@@ -62,6 +62,7 @@ class SpriteEntity(Entity):
         (sf.Sprite, self).__init__(texture=texture)
         
         self.sprite = sf.Sprite(texture)
+        self.sprite.color = color
         self.ratio = sf.Vector2(1.0, 1.0)
         self.origin = sf.Vector2(0.5, 0.5)
      
@@ -76,7 +77,7 @@ class SpriteEntity(Entity):
             self.sprite.ratio = sf.Vector2(1,1)
         else:
             self.sprite.ratio = sf.Vector2((value.x*1.0) / self.texture_rectangle.width,
-                                           (value.y*1.0) / self.texture_rectangle.height)                             
+                                           (value.y*1.0) / self.texture_rectangle.height)
                                        
     @property
     def texture_rectangle(self):
@@ -104,4 +105,9 @@ class SpriteEntity(Entity):
         
 class ScreenSpriteEntity(SpriteEntity):
     def draw(self, window, transform):
+        self.origin = sf.Vector2(0,0)
+        self.sprite.ratio = self.windowed_ratio(window)
         window.draw(self.sprite, sf.RenderStates(transform=self.global_transform))
+
+    def windowed_ratio(self, window):
+        return sf.Vector2(self._ratio.x * window.width, self._ratio.y * window.height)
