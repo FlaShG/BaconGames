@@ -1,9 +1,7 @@
 import sfml as sf
-from components import Transform
 
-class Entity(object):
+class Entity(sf.Transformable):
     def __init__(self):
-        self.transform = Transform()
         self.enabled = True
         self.children = []
 
@@ -11,12 +9,16 @@ class Entity(object):
         self.update(dt)
         for c in self.children:
             c.onupdate(dt)
+            
+    def add_child(self, child):
+        self.children.append(child)
         
     def update(self, dt):
         pass
         
     def ondraw(self, window, transform):
-        t = transform * self.transform
+        #t = transform * self.transform
+        t = transform.combine(self.transform)
         self.draw(window,  t)
         for c in self.children:
             c.ondraw(window, t)
@@ -26,31 +28,33 @@ class Entity(object):
 
 
 
-class VisibleEntity(Entity):
-    def __init__(self, color=sf.Color.WHITE):
-        super(VisibleEntity, self).__init__()
-        
-        self.color = color
-
-
-
-class SpriteEntity(VisibleEntity):
+class SpriteEntity(Entity):
     def __init__(self, color=sf.Color.WHITE,
                        texture=None,
                        center=sf.Vector2(0.5,0.5)):
-        super(SpriteEntity, self).__init__(color)
+        super(SpriteEntity, self).__init__()
+        (sf.Sprite, self).__init__(texture=texture)
         
         self.sprite = sf.Sprite(texture)
-        self.center = center
-        
+        #self.sprite.ratio = sf.Vector2(1.0 / texture.size.x, 1.0 / texture.size.y)
+        #self.sprite.ratio = sf.Vector2(0.5,0.5)
+     
+    @property
+    def ratio(self):
+        return sf.Vector2(self.sprite.ratio.x * self.sprite.texture.size.x, self.sprite.ratio.y * self.sprite.texture.size.y)
+
+    @ratio.setter
+    def ratio(self, value):
+        #self.sprite.ratio = value
+        self.sprite.ratio = sf.Vector2((value.y*1.0) / self.sprite.texture.size.x, (value.y*1.0) / self.sprite.texture.size.y)
+
+    @ratio.deleter
+    def ratio(self):
+        del self.sprite.ratio
+    
     def draw(self, window, transform):
-        #self.sprite.global_bounds = transform.transform_rectangle(sf.Rectangle(sf.Vector2(-0.5,-0.5), sf.Vector2(0.5,0.5)))
-        #self.sprite.rotation = self.rotation
-        
-        self.transform.apply_to(self.sprite)
-        
-        window.draw(self.sprite)
+        window.draw(self.sprite, sf.RenderStates(transform=transform))
         
     def update(self, dt):
-        self.transform.position += sf.Vector2(dt * 100, 0)
+        self.position += sf.Vector2(dt * 100, 0)
         

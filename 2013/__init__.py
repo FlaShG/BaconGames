@@ -13,8 +13,17 @@ try:
     # load a sprite to display
     texture = sf.Texture.from_file("rtm.png")
     entity = SpriteEntity(texture=texture)
+    entity.position = sf.Vector2(10,10)
+    entity.ratio = sf.Vector2(50,50)
     scene.add(entity)
+    
+    entity2 = SpriteEntity(texture=texture)
+    entity2.position = sf.Vector2(10,400)
+    entity2.rotation = 180
+    entity2.ratio = sf.Vector2(60,60)
+    entity.add_child(entity2)
 
+    
 except IOError: exit(1)
 
 clock = sf.Clock()
