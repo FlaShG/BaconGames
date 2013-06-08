@@ -8,6 +8,10 @@ class TextureManager():
         try:
             return TextureManager.textures[path]
         except KeyError:
-            TextureManager.textures[path] = sf.Texture.from_file(path)
-            return TextureManager.textures[path]
+            try:
+                TextureManager.textures[path] = sf.Texture.from_file(path)
+                return TextureManager.textures[path]
+            except IOError:
+                print("Could not load texture %s!" % path)
+                return None
         

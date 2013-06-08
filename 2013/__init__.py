@@ -12,25 +12,20 @@ window = sf.RenderWindow(sf.VideoMode(1024, 768), "Bacon Game")
 
 scene = Scene()
 
+# load a sprite to display
+entity = SpriteEntity(texture=TM.get('rtm.png'))
+#entity.position = sf.Vector2(10,10)
+entity.ratio = sf.Vector2(50,50)
+scene.add(entity)
 
-try:
-    # load a sprite to display
-    entity = SpriteEntity(texture=TM.get('rtm.png'))
-    #entity.position = sf.Vector2(10,10)
-    entity.ratio = sf.Vector2(50,50)
-    scene.add(entity)
+entity2 = SpriteEntity(texture=TM.get('rtm.png'))
+entity2.position = sf.Vector2(10,400)
+entity2.rotation = 180
+entity2.ratio = sf.Vector2(60,60)
+entity.add_child(entity2)
 
-    entity2 = SpriteEntity(texture=TM.get('rtm.png'))
-    entity2.position = sf.Vector2(10,400)
-    entity2.rotation = 180
-    entity2.ratio = sf.Vector2(60,60)
-    entity.add_child(entity2)
-
-    tiles = TileImporter.open('demo.json')
-    scene.add(tiles)
-
-
-except IOError: exit(1)
+tiles = TileImporter.open('demo.json')
+scene.add(tiles)
 
 clock = sf.Clock()
 Input.define_axis('horizontal', sf.Keyboard.RIGHT, sf.Keyboard.LEFT)
