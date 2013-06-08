@@ -1,4 +1,5 @@
 import sfml as sf
+from classes.entity import SpriteEntity
 
 
 # create the main window
@@ -7,7 +8,7 @@ window = sf.RenderWindow(sf.VideoMode(640, 480), "pySFML Window")
 try:
    # load a sprite to display
    texture = sf.Texture.from_file("rtm.png")
-   sprite = sf.Sprite(texture)
+   entity = SpriteEntity(texture=texture)
 
 except IOError: exit(1)
 
@@ -20,5 +21,6 @@ while window.is_open:
          window.close()
 
    window.clear() # clear screen
-   window.draw(sprite) # draw the sprite
+   entity.update(1)
+   entity.draw(window)
    window.display() # update the window
