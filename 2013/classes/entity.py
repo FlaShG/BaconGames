@@ -36,21 +36,26 @@ class SpriteEntity(Entity):
         
         self.sprite = sf.Sprite(texture)
         ratio = sf.Vector2(1.0 / texture.size.x, 1.0 / texture.size.y)
-        
-        self.sprite.origin = sf.Vector2(0.5,0.5)
+        self.origin = sf.Vector2(0.5, 0.5)
      
     @property
     def ratio(self):
-        return sf.Vector2(self.sprite.ratio.x * self.sprite.texture.size.x, self.sprite.ratio.y * self.sprite.texture.size.y)
-
+        return sf.Vector2(self.sprite.ratio.x * self.sprite.texture.size.x,
+                          self.sprite.ratio.y * self.sprite.texture.size.y)
     @ratio.setter
     def ratio(self, value):
-        #self.sprite.ratio = value
-        self.sprite.ratio = sf.Vector2((value.y*1.0) / self.sprite.texture.size.x, (value.y*1.0) / self.sprite.texture.size.y)
+        self.sprite.ratio = sf.Vector2((value.y*1.0) / self.sprite.texture.size.x,
+                                       (value.y*1.0) / self.sprite.texture.size.y)
 
-    @ratio.deleter
-    def ratio(self):
-        del self.sprite.ratio
+    @property
+    def origin(self):
+        return self._origin
+    @origin.setter
+    def origin(self, value):
+        self._origin = value
+        self.sprite.origin = sf.Vector2(value.x * self.sprite.texture.size.x,
+                                        value.y * self.sprite.texture.size.y)
+        
     
     def draw(self, window, transform):
         window.draw(self.sprite, sf.RenderStates(transform=transform))
