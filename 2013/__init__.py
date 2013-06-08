@@ -4,7 +4,8 @@ from classes.scene import Scene
 
 
 # create the main window
-window = sf.RenderWindow(sf.VideoMode(640, 480), "pySFML Window")
+#window = sf.RenderWindow(sf.VideoMode(640, 480), "Bacon Game")
+window = sf.RenderWindow(sf.VideoMode(1024, 768), "Bacon Game")
 
 scene = Scene()
 
@@ -13,7 +14,7 @@ try:
     # load a sprite to display
     texture = sf.Texture.from_file("rtm.png")
     entity = SpriteEntity(texture=texture)
-    entity.position = sf.Vector2(10,10)
+    #entity.position = sf.Vector2(10,10)
     entity.ratio = sf.Vector2(50,50)
     scene.add(entity)
     

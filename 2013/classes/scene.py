@@ -11,4 +11,5 @@ class Scene(object):
         for e in self.entities:
             e.onupdate(dt)
         for e in self.entities:
-            e.ondraw(window, sf.Transform().translate(window.size/2))
+            scale = window.height / 100.0
+            e.ondraw(window, sf.Transform().translate(window.size/2.0).scale(sf.Vector2(scale, scale)))
