@@ -4,8 +4,9 @@ from classes.input import Input
 class Object(object):
     root = None
 
-    def __init__(self):
+    def __init__(self, layer=0):
         self.children = []
+        self.__layer = layer
         self.parent = None
         self.set_parent(Object.root)
         
@@ -16,19 +17,27 @@ class Object(object):
         self.parent = parent
         if self.parent != None:
             parent.children.append(self)
-            self.get_root().add_to_set(self)
+            self.get_root().add_to_set(self, self.layer)
+            
+    def set_layer(self, layer):
+        self.__layer = layer
+        self.get_root().add_to_set(self, self.layer)
+        
+    @property
+    def layer(self):
+        return self.__layer
             
     def get_root(self):
         return self if self.parent == None else self.parent.get_root()
         
-    def add_to_set(self):
+    def add_to_set(self, entity, layer):
         pass
             
             
 
 class Entity(Object, sf.Transformable):
-    def __init__(self):
-        super(Entity, self).__init__()
+    def __init__(self, layer=0):
+        super(Entity, self).__init__(layer)
         self.enabled = True
         self.global_transform = sf.Transform()
         
@@ -46,9 +55,10 @@ class Entity(Object, sf.Transformable):
 
 
 class SpriteEntity(Entity):
-    def __init__(self, color=sf.Color.WHITE,
+    def __init__(self, layer=0,
+                       color=sf.Color.WHITE,
                        texture=None):
-        super(SpriteEntity, self).__init__()
+        super(SpriteEntity, self).__init__(layer)
         (sf.Sprite, self).__init__(texture=texture)
         
         self.sprite = sf.Sprite(texture)
