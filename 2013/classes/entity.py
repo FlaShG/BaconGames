@@ -101,3 +101,7 @@ class SpriteEntity(Entity):
     def draw(self, window, transform):
         window.draw(self.sprite, sf.RenderStates(transform=transform * self.global_transform))
         
+        
+class ScreenSpriteEntity(SpriteEntity):
+    def draw(self):
+        window.draw(self.sprite, sf.RenderStates(transform=self.global_transform))
