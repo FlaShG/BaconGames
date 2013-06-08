@@ -1,13 +1,15 @@
 import sfml as sf
 from classes.entity import Entity, SpriteEntity
 from classes.input import Input
+from classes.texturemanager import TextureManager as TM
 
 class TileGroup(Entity):
-    def __init__(self, width, data, texture):
+    def __init__(self, width, data, tilesets):
         super(TileGroup, self).__init__()
         self.width = width
         self.data = data
-        self.texture = texture
+        self.tilesets = tilesets
+        self.tileset = []
         self.loader()
 
 
@@ -17,8 +19,25 @@ class TileGroup(Entity):
 
         for d in self.data:
             if(d > 0):
-                tile = SpriteEntity(texture=self.texture)
-                tile.texture_rectangle = sf.Rectangle((((d-1)%16)*32, ((d-1)/16)*32), (32, 32))
+                for t in self.tilesets:
+                    if(t['firstgid'] <= d):
+                        self.tileset = t
+                        break;
+
+                tile = SpriteEntity(texture=TM.get('tiles/' + self.tileset['image']))
+                tiles_per_line = self.tileset['imagewidth'] / self.tileset['tilewidth']
+                tile_offset = d - self.tileset['firstgid']
+                tile.texture_rectangle = sf.Rectangle(
+                    (
+                        (
+                            (tile_offset%tiles_per_line)*32
+                        ),
+                        (
+                            (tile_offset/tiles_per_line)*32
+                        )),
+                        (32, 32)
+                    )
+
                 tile.texture_rectangle
                 tile.position = sf.Vector2(x, y)
                 self.children.append(tile)

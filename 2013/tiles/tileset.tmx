@@ -3,14 +3,22 @@
  <tileset firstgid="1" name="tileset" tilewidth="32" tileheight="32">
   <image source="tileset.png" width="512" height="512"/>
  </tileset>
- <layer name="Ground" width="16" height="16">
+ <tileset firstgid="257" name="gamelogic" tilewidth="32" tileheight="32">
+  <image source="gamelogic.png" width="128" height="128"/>
+ </tileset>
+ <layer name="ground" width="16" height="16">
   <data encoding="base64" compression="zlib">
-   eJx1k1EKwDAIQ9Ub6P0POwYtvD3cR5mGRhPrKiISp89hPieuE9fBS3GDw3zAJS9Vlzm/l9fAbz7x1U18dP9izO23lnuJWqMenMnVay1bXfajX+vq+M7H/UYcvgm1bLpTfHvmDnDm/YMl6nBe1mqfnoH1jep4Jz13aqZvenNM76zvvewF48nYfc/CtYftvf0fbDvDfn4X9vXuvPgDVTUJgQ==
+   eJx9kksOACEIQ4Eb4P0POxtMnrXjgmj4ttCKiBxrGH1r/jX/Gn8htuM5voVc+nYdbeF1/0ZtxomHuNrMVVwZNwdyr0f/jJMLZ3Tc2FNm7HhhfsaJs+Pk8bqB7ol4uGvXqyRPd9+Szxy9DTXDOGv/7ks9KD83j31TaomjJZ9+7trpmv15d70F57v96420Vjk4DTr96r6cpslDtcl5HxDJCYQ=
   </data>
  </layer>
- <layer name="Object" width="16" height="16">
+ <layer name="gamelogic" width="16" height="16">
   <data encoding="base64" compression="zlib">
-   eJxjYKAcMAMxCxE0unoYEAZiESJodPXoZhGyF5v9yGYRsheb/dj8g8suXABmHjZ343IDPnNI0TMKRjYAAApwArM=
+   eJxjYBh4wMhIHEZXT6xeXPaRqp+JEVM/Nj61/E+q2YT8PdIB82iYYAAAKtEAaA==
+  </data>
+ </layer>
+ <layer name="objects" width="16" height="16">
+  <data encoding="base64" compression="zlib">
+   eJxjYKAcsAIxGxE0unoYEAViMSJodPXoZhGyFwaYgZgFi1mE7IUBZSBWweMfXHbhAjB7YGqR9aDbhQ/A1JKiZxSMbAAAWp4Diw==
   </data>
  </layer>
 </map>
