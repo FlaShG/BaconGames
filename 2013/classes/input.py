@@ -23,6 +23,11 @@ class Input():
         Input.released = []
         
     @staticmethod
+    def reset():
+        pressed = []
+        hold = []
+        
+    @staticmethod
     def get_key(code):
         return code in Input.hold or code in Input.pressed
         

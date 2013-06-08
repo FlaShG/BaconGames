@@ -31,6 +31,8 @@ while window.is_open:
             window.close()
         if type(event) is sf.KeyEvent:
             Input.process_event(event)
+        if type(event) is sf.FocusEvent:
+            Input.reset()
 
     dt = clock.elapsed_time
     clock.restart()
