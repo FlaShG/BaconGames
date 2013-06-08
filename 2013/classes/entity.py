@@ -110,7 +110,6 @@ class ScreenSpriteEntity(SpriteEntity):
         super(ScreenSpriteEntity, self).__init__(layer, color, texture)
         self.origin = sf.Vector2(0, 0)
         
-        
     def draw(self, window, transform):
         self.sprite.ratio = self.windowed_ratio(window)
         window.draw(self.sprite, sf.RenderStates(transform=self.global_transform))
