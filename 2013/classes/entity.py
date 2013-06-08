@@ -116,6 +116,7 @@ class ScreenSpriteEntity(SpriteEntity):
     def draw(self, window, transform):
         self.sprite.ratio = self.windowed_ratio(window)
         t = sf.Transform().translate(sf.Vector2(window.width / 2.0, window.height / 2.0))
+        #self.global_transform.translate(sf.Vector2(100,0))
         window.draw(self.sprite, sf.RenderStates(transform=t * self.global_transform))
 
         
