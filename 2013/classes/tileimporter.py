@@ -15,6 +15,6 @@ class TileImporter():
 
         for l in data['layers']:
             if(l['type'] == 'tilelayer'):
-                tilegroups.append(TileGroup(l['width'], l['data'], TM.get(data['tilesets'][0]['image'])))
+                tilegroups.append(TileGroup(l['width'], l['data'], TM.get('tiles/' + data['tilesets'][0]['image'])))
 
         return tilegroups
