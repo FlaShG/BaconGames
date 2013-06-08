@@ -61,7 +61,3 @@ class SpriteEntity(Entity):
     def draw(self, window, transform):
         window.draw(self.sprite, sf.RenderStates(transform=transform))
         
-    def update(self, dt):
-        #self.position += sf.Vector2(dt * 100, 0)
-        self.rotation += dt * 180 * Input.get_axis("horizontal")
-        
