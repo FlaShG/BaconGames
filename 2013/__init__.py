@@ -7,8 +7,8 @@ from classes.tileimporter import TileImporter
 from classes.player import Player
 
 # create the main window
-#window = sf.RenderWindow(sf.VideoMode(640, 480), "Bacon Game")
-window = sf.RenderWindow(sf.VideoMode(1024, 768), "Bacon Game")
+window = sf.RenderWindow(sf.VideoMode(640, 480), "Bacon Game")
+#window = sf.RenderWindow(sf.VideoMode(1024, 768), "Bacon Game")
 
 scene = Scene()
 

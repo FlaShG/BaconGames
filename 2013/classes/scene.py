@@ -20,10 +20,6 @@ class Scene(Object):
         if not layer in self.entityset:
             self.entityset[layer] = set()
             self.entityset = OrderedDict(sorted(self.entityset.items(), key=lambda t: t[0]))
-            #newset = OrderedDict()
-            #for key in sorted(self.entityset.iterkeys()):
-            #    newset[key] = self.entityset[key]
-            #self.entityset = newset
             
         self.entityset[layer].add(entity)
 
