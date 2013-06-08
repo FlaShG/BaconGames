@@ -17,7 +17,7 @@ scene.addall(tiles)
 
 clock = sf.Clock()
 Input.define_axis('horizontal', sf.Keyboard.RIGHT, sf.Keyboard.LEFT)
-Input.define_axis('vertical', sf.Keyboard.UP, sf.Keyboard.DOWN)
+Input.define_axis('vertical', sf.Keyboard.DOWN, sf.Keyboard.UP)
 
 scene.add(Player())
 
