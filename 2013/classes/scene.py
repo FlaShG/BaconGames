@@ -36,9 +36,6 @@ class Scene(Object):
         for e in self.entityset:
             e.draw(window, transform)
             
-            #e.ondraw(window, sf.Transform().translate(window.size/2.0 - self.camera.position).scale(sf.Vector2(scale, scale)))
-
-            
             
 class Camera(Entity):
     def __init__(self):
