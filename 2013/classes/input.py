@@ -11,7 +11,8 @@ class Input():
         if(event.pressed and not Input.get_key(event.code)):
             Input.pressed.append(event.code)
         elif(event.released):
-            Input.hold.remove(event.code)
+            try: Input.hold.remove(event.code)
+            except: pass
             Input.released.append(event.code)
             
     @staticmethod

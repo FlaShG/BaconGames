@@ -16,7 +16,7 @@ scene = Scene()
 entity = SpriteEntity(texture=TM.get('rtm.png'))
 #entity.position = sf.Vector2(10,10)
 entity.ratio = sf.Vector2(50,50)
-#scene.add(entity)
+scene.add(entity)
 
 entity2 = SpriteEntity(texture=TM.get('rtm.png'))
 entity2.position = sf.Vector2(10,400)
