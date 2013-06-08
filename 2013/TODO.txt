@@ -1,8 +1,7 @@
 
 TODOS:
 * Sprite Origins [Sascha]
-* World Space Coordinates [Lars] #done
-* Texture Manager [Anne]
+* World Space Coordinates [Sascha]
 * Tiled Importer [Lars]
 * Tilesets []
 * Player Code []
