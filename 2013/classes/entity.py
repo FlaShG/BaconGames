@@ -65,6 +65,7 @@ class SpriteEntity(Entity):
         self.sprite.color = color
         self.ratio = sf.Vector2(1.0, 1.0)
         self.origin = sf.Vector2(0.5, 0.5)
+        self.__renderstate = sf.RenderStates()
      
     @property
     def ratio(self):
@@ -100,20 +101,23 @@ class SpriteEntity(Entity):
         
     
     def draw(self, window, transform):
-        window.draw(self.sprite, sf.RenderStates(transform=transform * self.global_transform))
+        self.__renderstate.transform = transform * self.global_transform
+        window.draw(self.sprite, self.__renderstate)
         
         
 class ScreenSpriteEntity(SpriteEntity):
     def __init__(self, layer=0,
                        color=sf.Color.WHITE,
-                       texture=None):
+                       texture=None,
+                       fullscreen=True):
         super(ScreenSpriteEntity, self).__init__(layer, color, texture)
         self.origin = sf.Vector2(0, 0)
+        self.fullscreen = fullscreen
         
     def draw(self, window, transform):
         self.sprite.ratio = self.windowed_ratio(window)
         window.draw(self.sprite, sf.RenderStates(transform=self.global_transform))
 
     def windowed_ratio(self, window):
-        return sf.Vector2((self._ratio.x*1.0) / self.texture_rectangle.width * window.width,
+        return sf.Vector2((self._ratio.x*1.0) / self.texture_rectangle.width * (window.width if self.fullscreen else window.height),
                                               (self._ratio.y*1.0) / self.texture_rectangle.height * window.height)
