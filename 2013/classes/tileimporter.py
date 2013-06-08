@@ -1,7 +1,6 @@
 import sfml as sf
 import json
 from classes.tilegroup import TileGroup
-from classes.texturemanager import TextureManager as TM
 
 class TileImporter():
     @staticmethod
@@ -15,6 +14,12 @@ class TileImporter():
 
         for l in data['layers']:
             if(l['type'] == 'tilelayer'):
-                tilegroups.append(TileGroup(l['width'], l['data'], TM.get('tiles/' + data['tilesets'][0]['image'])))
+                tilesets = []
+                for t in data['tilesets']:
+                    tilesets.append((t['firstgid'], 'tiles/' + t['image']))
+
+                tilesets.sort(key=lambda x: x[0], reverse=True)
+
+                tilegroups.append(TileGroup(l['width'], l['data'], tilesets))
 
         return tilegroups
