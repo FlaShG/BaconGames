@@ -36,6 +36,3 @@ class Camera(Entity):
     def __init__(self):
         super(Camera, self).__init__()
         self.zoom = 1
-        
-    def update(self, dt):
-        self.move(sf.Vector2(0,1) * dt * 10)
