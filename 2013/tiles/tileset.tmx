@@ -11,14 +11,14 @@
    eJx9kksOACEIQ4Eb4P0POxtMnrXjgmj4ttCKiBxrGH1r/jX/Gn8htuM5voVc+nYdbeF1/0ZtxomHuNrMVVwZNwdyr0f/jJMLZ3Tc2FNm7HhhfsaJs+Pk8bqB7ol4uGvXqyRPd9+Szxy9DTXDOGv/7ks9KD83j31TaomjJZ9+7trpmv15d70F57v96420Vjk4DTr96r6cpslDtcl5HxDJCYQ=
   </data>
  </layer>
- <layer name="gamelogic" width="16" height="16">
+ <layer name="gamelogic" width="16" height="16" visible="0">
   <data encoding="base64" compression="zlib">
    eJxjYBh4wMhIHEZXT6xeXPaRqp+JEVM/Nj61/E+q2YT8PdIB82iYYAAAKtEAaA==
   </data>
  </layer>
  <layer name="objects" width="16" height="16">
   <data encoding="base64" compression="zlib">
-   eJxjYKAcsAIxGxE0unoYEAViMSJodPXoZhGyFwaYgZgFi1mE7IUBZSBWweMfXHbhAjB7YGqR9aDbhQ/A1JKiZxSMbAAAWp4Diw==
+   eJxjYGBgYAZiFiSaVCAMxCJAbAzEJiSag6wWph9mHjEApgedTYx9DGh2EWOvMhCr4DCT0vAjxd+DGZAbDjCALYwHAxiO/gIAQ0IDmw==
   </data>
  </layer>
 </map>
