@@ -16,9 +16,9 @@ class TileImporter():
             if(l['type'] == 'tilelayer'):
                 tilesets = []
                 for t in data['tilesets']:
-                    tilesets.append((t['firstgid'], 'tiles/' + t['image']))
+                    tilesets.append(t)
 
-                tilesets.sort(key=lambda x: x[0], reverse=True)
+                tilesets.sort(key=lambda x: x['firstgid'], reverse=True)
 
                 tilegroups.append(TileGroup(l['width'], l['data'], tilesets))
 

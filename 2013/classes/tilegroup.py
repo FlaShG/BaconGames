@@ -9,7 +9,7 @@ class TileGroup(Entity):
         self.width = width
         self.data = data
         self.tilesets = tilesets
-        self.texture = ''
+        self.tileset = []
         self.loader()
 
 
@@ -20,12 +20,24 @@ class TileGroup(Entity):
         for d in self.data:
             if(d > 0):
                 for t in self.tilesets:
-                    if(t[0] <= d):
-                        self.texture = t[1]
+                    if(t['firstgid'] <= d):
+                        self.tileset = t
                         break;
 
-                tile = SpriteEntity(texture=TM.get(self.texture))
-                tile.texture_rectangle = sf.Rectangle((((d-1)%16)*32, ((d-1)/16)*32), (32, 32))
+                tile = SpriteEntity(texture=TM.get('tiles/' + self.tileset['image']))
+                tiles_per_line = self.tileset['imagewidth'] / self.tileset['tilewidth']
+                tile_offset = d - self.tileset['firstgid']
+                tile.texture_rectangle = sf.Rectangle(
+                    (
+                        (
+                            (tile_offset%tiles_per_line)*32
+                        ),
+                        (
+                            (tile_offset/tiles_per_line)*32
+                        )),
+                        (32, 32)
+                    )
+
                 tile.texture_rectangle
                 tile.position = sf.Vector2(x, y)
                 self.children.append(tile)
