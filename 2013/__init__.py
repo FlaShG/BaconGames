@@ -15,7 +15,7 @@ scene = Scene()
 # load a sprite to display
 entity = SpriteEntity(texture=TM.get('rtm.png'))
 #entity.position = sf.Vector2(10,10)
-entity.ratio = sf.Vector2(50,50)
+entity.ratio = sf.Vector2(10,10)
 scene.add(entity)
 
 entity2 = SpriteEntity(texture=TM.get('rtm.png'))
@@ -25,7 +25,7 @@ entity2.ratio = sf.Vector2(60,60)
 #entity.add_child(entity2)
 
 tiles = TileImporter.open('demo.json')
-scene.add(tiles)
+scene.addall(tiles)
 
 clock = sf.Clock()
 Input.define_axis('horizontal', sf.Keyboard.RIGHT, sf.Keyboard.LEFT)
