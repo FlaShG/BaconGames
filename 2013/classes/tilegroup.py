@@ -24,13 +24,13 @@ class TileGroup(Entity):
                 tile.texture_rectangle = sf.Rectangle(
                     (
                         (
-                            (tile_offset%tiles_per_line)*32
+                            (tile_offset%tiles_per_line)*32 - 0.5
                         ),
                         (
-                            (tile_offset/tiles_per_line)*32
+                            (tile_offset/tiles_per_line)*32 - 0.5
                         )
                     ),
-                    (32, 32)
+                    (31, 31)
                 )
 
                 tile.texture_rectangle
