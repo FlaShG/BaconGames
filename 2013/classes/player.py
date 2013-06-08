@@ -7,6 +7,8 @@ class Player(SpriteEntity):
     def __init__(self):
         super(Player, self).__init__(texture=TM.get('player.png'))
         self.speed = 4
+        self.light = LightCircle()
+        self.light.set_parent(self)
 
 
     def update(self, dt):
@@ -17,6 +19,6 @@ class Player(SpriteEntity):
 class LightCircle(Entity):
     def __init__(self):
         super(LightCircle, self).__init__(layer = 50)
-        self.circle = SpriteEntity(texture = TM.get'circle.png')
+        self.circle = SpriteEntity(texture = TM.get('circle.png'))
 
     
