@@ -1,4 +1,5 @@
 import sfml as sf
+from classes.texturemanager import TextureManager as TM
 from classes.entity import SpriteEntity
 from classes.scene import Scene
 
@@ -11,13 +12,12 @@ scene = Scene()
 
 try:
     # load a sprite to display
-    texture = sf.Texture.from_file("rtm.png")
-    entity = SpriteEntity(texture=texture)
+    entity = SpriteEntity(texture=TM.get('rtm.png'))
     entity.position = sf.Vector2(10,10)
     entity.ratio = sf.Vector2(50,50)
     scene.add(entity)
     
-    entity2 = SpriteEntity(texture=texture)
+    entity2 = SpriteEntity(texture=TM.get('rtm.png'))
     entity2.position = sf.Vector2(10,400)
     entity2.rotation = 180
     entity2.ratio = sf.Vector2(60,60)
