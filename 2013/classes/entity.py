@@ -72,8 +72,11 @@ class SpriteEntity(Entity):
     @ratio.setter
     def ratio(self, value):
         self._ratio = value
-        self.sprite.ratio = sf.Vector2((value.x*1.0) / self.texture_rectangle.width,
-                                       (value.y*1.0) / self.texture_rectangle.height)                             
+        if self.texture_rectangle.width == 0 or self.texture_rectangle.height == 0:
+            self.sprite.ratio = sf.Vector2(1,1)
+        else:
+            self.sprite.ratio = sf.Vector2((value.x*1.0) / self.texture_rectangle.width,
+                                           (value.y*1.0) / self.texture_rectangle.height)                             
                                        
     @property
     def texture_rectangle(self):
