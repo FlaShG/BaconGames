@@ -30,14 +30,14 @@ class Entity(sf.Transformable):
 
 class SpriteEntity(Entity):
     def __init__(self, color=sf.Color.WHITE,
-                       texture=None,
-                       center=sf.Vector2(0.5,0.5)):
+                       texture=None):
         super(SpriteEntity, self).__init__()
         (sf.Sprite, self).__init__(texture=texture)
         
         self.sprite = sf.Sprite(texture)
-        #self.sprite.ratio = sf.Vector2(1.0 / texture.size.x, 1.0 / texture.size.y)
-        #self.sprite.ratio = sf.Vector2(0.5,0.5)
+        ratio = sf.Vector2(1.0 / texture.size.x, 1.0 / texture.size.y)
+        
+        self.sprite.origin = sf.Vector2(0.5,0.5)
      
     @property
     def ratio(self):
@@ -56,5 +56,6 @@ class SpriteEntity(Entity):
         window.draw(self.sprite, sf.RenderStates(transform=transform))
         
     def update(self, dt):
-        self.position += sf.Vector2(dt * 100, 0)
+        #self.position += sf.Vector2(dt * 100, 0)
+        self.rotation += dt * 180
         

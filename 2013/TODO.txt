@@ -1,6 +1,9 @@
 
 TODOS:
-* Transform Multiplication [Lars]
-* Sprite Transformation [Sascha]
-* World Space Coordinates []
-* Texture Manager []
+* Sprite Origins [Sascha]
+* World Space Coordinates [Lars]
+* Texture Manager [Anne]
+* Tiled Importer []
+* Tilesets []
+* Spielfigur coden []
+* Spielfigur zeichnen []
