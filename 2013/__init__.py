@@ -14,8 +14,8 @@ scene = Scene()
 
 tiles = TileImporter.open('tiles/tileset.json')
 
-e = SpriteEntity(texture=TM.get('rtm.png'), layer=2)
-SpriteEntity(texture=TM.get('rtm.png'), layer=2).set_parent(e)
+e = SpriteEntity(texture=TM.get('rtm.png'))
+SpriteEntity(texture=TM.get('rtm.png')).set_parent(e)
 
 clock = sf.Clock()
 Input.define_axis('horizontal', sf.Keyboard.RIGHT, sf.Keyboard.LEFT)
