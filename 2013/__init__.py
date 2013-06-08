@@ -14,13 +14,13 @@ except IOError: exit(1)
 
 # start the game loop
 while window.is_open:
-   # process events
-   for event in window.events:
-      # close window: exit
-      if type(event) is sf.CloseEvent:
-         window.close()
+    # process events
+    for event in window.events:
+        # close window: exit
+        if type(event) is sf.CloseEvent:
+            window.close()
 
-   window.clear() # clear screen
-   entity.update(1)
-   entity.draw(window)
-   window.display() # update the window
+    window.clear() # clear screen
+    window.draw(sprite) # draw the sprite
+    window.draw(text)
+    window.display() # update the window
