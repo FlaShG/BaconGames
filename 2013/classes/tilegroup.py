@@ -6,27 +6,21 @@ from classes.texturemanager import TextureManager as TM
 class TileGroup(Entity):
     def __init__(self, width, data, tilesets, layer):
         super(TileGroup, self).__init__()
-        self.width = width
-        self.data = data
-        self.tilesets = tilesets
-        self.tileset = []
-        self.loader(layer)
 
-
-    def loader(self, layer):
+        tileset = []
         x = 0.0
         y = 0.0
 
-        for d in self.data:
+        for d in data:
             if(d > 0):
-                for t in self.tilesets:
+                for t in tilesets:
                     if(t['firstgid'] <= d):
-                        self.tileset = t
+                        tileset = t
                         break;
 
-                tile = SpriteEntity(texture=TM.get('tiles/' + self.tileset['image']), layer=layer)
-                tiles_per_line = self.tileset['imagewidth'] / self.tileset['tilewidth']
-                tile_offset = d - self.tileset['firstgid']
+                tile = SpriteEntity(texture=TM.get('tiles/' + tileset['image']), layer=layer)
+                tiles_per_line = tileset['imagewidth'] / tileset['tilewidth']
+                tile_offset = d - tileset['firstgid']
                 tile.texture_rectangle = sf.Rectangle(
                     (
                         (
@@ -44,6 +38,6 @@ class TileGroup(Entity):
                 self.children.append(tile)
 
             x += 1.0
-            if(x >= self.width):
+            if(x >= width):
                 x = 0.0
                 y += 1.0
