@@ -1,27 +1,53 @@
 import sfml as sf
 from classes.input import Input
 
-class Entity(sf.Transformable):
-    def __init__(self):
-        self.enabled = True
-        self.children = []
+class Object(object):
+    root = None
 
-    def onupdate(self, dt):
-        self.update(dt)
-        for c in self.children:
-            c.onupdate(dt)
+    def __init__(self, layer=0):
+        self.children = []
+        self.__layer = layer
+        self.parent = None
+        self.set_parent(Object.root)
+        
+    def set_parent(self, parent):
+        if self.parent != None:
+            try: self.parent.children.remove(self)
+            except: pass
+        self.parent = parent
+        if self.parent != None:
+            parent.children.append(self)
+            self.get_root().add_to_set(self, self.layer)
             
-    def add_child(self, child):
-        self.children.append(child)
+    def set_layer(self, layer):
+        self.__layer = layer
+        self.get_root().add_to_set(self, self.layer)
+        
+    @property
+    def layer(self):
+        return self.__layer
+            
+    def get_root(self):
+        return self if self.parent == None else self.parent.get_root()
+        
+    def add_to_set(self, entity, layer):
+        pass
+            
+            
+
+class Entity(Object, sf.Transformable):
+    def __init__(self, layer=0):
+        super(Entity, self).__init__(layer)
+        self.enabled = True
+        self.global_transform = sf.Transform()
         
     def update(self, dt):
         pass
         
-    def ondraw(self, window, transform):
-        t = transform * self.transform
-        self.draw(window,  t)
+    def build_global_transform(self, transform):
+        self.global_transform = transform * self.transform
         for c in self.children:
-            c.ondraw(window, t)
+            c.build_global_transform(self.global_transform)
         
     def draw(self, window, transform):
         pass
@@ -29,9 +55,10 @@ class Entity(sf.Transformable):
 
 
 class SpriteEntity(Entity):
-    def __init__(self, color=sf.Color.WHITE,
+    def __init__(self, layer=0,
+                       color=sf.Color.WHITE,
                        texture=None):
-        super(SpriteEntity, self).__init__()
+        super(SpriteEntity, self).__init__(layer)
         (sf.Sprite, self).__init__(texture=texture)
         
         self.sprite = sf.Sprite(texture)
@@ -45,12 +72,11 @@ class SpriteEntity(Entity):
     @ratio.setter
     def ratio(self, value):
         self._ratio = value
-        #self.sprite.ratio = sf.Vector2((value.x*1.0) / (self.sprite.texture.width / self.texture_rectangle.width),
-        #                               (value.y*1.0) / (self.sprite.texture.height / self.texture_rectangle.height))
-        #self.sprite.ratio = sf.Vector2((value.x*1.0) / self.sprite.texture.width,
-        #                               (value.y*1.0) / self.sprite.texture.height)
-        self.sprite.ratio = sf.Vector2((value.x*1.0) / self.texture_rectangle.width,
-                                       (value.y*1.0) / self.texture_rectangle.height)                             
+        if self.texture_rectangle.width == 0 or self.texture_rectangle.height == 0:
+            self.sprite.ratio = sf.Vector2(1,1)
+        else:
+            self.sprite.ratio = sf.Vector2((value.x*1.0) / self.texture_rectangle.width,
+                                           (value.y*1.0) / self.texture_rectangle.height)                             
                                        
     @property
     def texture_rectangle(self):
@@ -73,5 +99,5 @@ class SpriteEntity(Entity):
         
     
     def draw(self, window, transform):
-        window.draw(self.sprite, sf.RenderStates(transform=transform))
+        window.draw(self.sprite, sf.RenderStates(transform=transform * self.global_transform))
         

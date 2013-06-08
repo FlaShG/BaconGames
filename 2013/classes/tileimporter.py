@@ -12,14 +12,23 @@ class TileImporter():
         tilegroups = []
         data = json.load(file)
 
+        layer = -100
+
         for l in data['layers']:
             if(l['type'] == 'tilelayer'):
-                tilesets = []
-                for t in data['tilesets']:
-                    tilesets.append(t)
+                if(l['name'] == 'gamelogic'):
+                    layer = 1
+                    TileImporter.gamelogic()
+                else:
+                    tilesets = []
+                    for t in data['tilesets']:
+                        tilesets.append(t)
 
-                tilesets.sort(key=lambda x: x['firstgid'], reverse=True)
+                    tilesets.sort(key=lambda x: x['firstgid'], reverse=True)
 
-                tilegroups.append(TileGroup(l['width'], l['data'], tilesets))
+                    tilegroups.append(TileGroup(l['width'], l['data'], tilesets, layer))
+                    layer += 1
 
-        return tilegroups
+    @staticmethod
+    def gamelogic():
+        pass

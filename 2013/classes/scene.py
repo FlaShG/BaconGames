@@ -1,36 +1,56 @@
 import sfml as sf
-from classes.entity import Entity
+from classes.entity import Object, Entity
+from collections import OrderedDict
 
-class Scene(object):
+class Scene(Object):
     def __init__(self):
-        self.entities = []
+        super(Scene, self).__init__()
+        
+        Object.root = self
+        
+        self.entityset = OrderedDict()
         self.camera = None
         self.set_camera(Camera())
 
-    def addall(self, entities):
+    def add_to_set(self, entity, layer = 0):
         try:
-            for entity in entities:
-                self.add(entity)
+            self.entityset[entity.layer].remove(entity)
         except: pass
-        
-    def add(self, entity):
-        if(not entity in self.entities):
-            self.entities.append(entity)
-        
-        
+    
+        if not layer in self.entityset:
+            self.entityset[layer] = set()
+            self.entityset = OrderedDict(sorted(self.entityset.items(), key=lambda t: t[0]))
+            #newset = OrderedDict()
+            #for key in sorted(self.entityset.iterkeys()):
+            #    newset[key] = self.entityset[key]
+            #self.entityset = newset
+            
+        self.entityset[layer].add(entity)
+
             
     def set_camera(self, camera):
         self.camera = camera
-        self.add(camera)
+        
+    def set_parent(self, parent):
+        pass
 
 
     def process(self, window, dt):
-        for e in self.entities:
-            e.onupdate(dt)
-        for e in self.entities:
-            scale = window.height / (20.0 + self.camera.zoom)
-            e.ondraw(window, sf.Transform().translate(window.size/2.0 - self.camera.position).scale(sf.Vector2(scale, scale)))
-
+        for layer in self.entityset:
+            for e in self.entityset[layer]:
+                e.update(dt)
+            
+        for e in self.children:
+            e.build_global_transform(sf.Transform())
+                
+        scale = window.height / (20.0 + self.camera.zoom)
+        transform = sf.Transform().translate(window.size/2.0)
+        transform = transform.scale(sf.Vector2(scale, scale)) * self.camera.global_transform.inverse
+            
+        for layer in self.entityset:
+            for e in self.entityset[layer]:
+                e.draw(window, transform)
+            
             
 class Camera(Entity):
     def __init__(self):
