@@ -1,5 +1,5 @@
 from classes.input import Input
-from classes.entity import Entity, SpriteEntity
+from classes.entity import Entity, SpriteEntity, ScreenSpriteEntity
 from classes.texturemanager import TextureManager as TM
 import sfml as sf
 
@@ -19,6 +19,6 @@ class Player(SpriteEntity):
 class LightCircle(Entity):
     def __init__(self):
         super(LightCircle, self).__init__(layer = 50)
-        self.circle = SpriteEntity(texture = TM.get('circle.png'))
-
+        self.circle = ScreenSpriteEntity(texture = TM.get('circle.png'))
+        self.circle.set_parent(self)
     
