@@ -2,10 +2,12 @@ import sfml as sf
 from classes.texturemanager import TextureManager as TM
 from classes.entity import SpriteEntity
 from classes.scene import Scene
+from classes.input import Input
 
 
 # create the main window
-window = sf.RenderWindow(sf.VideoMode(640, 480), "pySFML Window")
+#window = sf.RenderWindow(sf.VideoMode(640, 480), "Bacon Game")
+window = sf.RenderWindow(sf.VideoMode(1024, 768), "Bacon Game")
 
 scene = Scene()
 
@@ -13,7 +15,7 @@ scene = Scene()
 try:
     # load a sprite to display
     entity = SpriteEntity(texture=TM.get('rtm.png'))
-    entity.position = sf.Vector2(10,10)
+    #entity.position = sf.Vector2(10,10)
     entity.ratio = sf.Vector2(50,50)
     scene.add(entity)
     
@@ -27,14 +29,18 @@ try:
 except IOError: exit(1)
 
 clock = sf.Clock()
+Input.define_axis('horizontal', sf.Keyboard.RIGHT, sf.Keyboard.LEFT)
 
 # start the game loop
 while window.is_open:
+    Input.update()
    # process events
     for event in window.events:
         # close window: exit
         if type(event) is sf.CloseEvent:
             window.close()
+        if type(event) is sf.KeyEvent:
+            Input.process_event(event)
 
     dt = clock.elapsed_time
     clock.restart()
