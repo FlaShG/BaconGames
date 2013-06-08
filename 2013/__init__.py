@@ -24,7 +24,7 @@ entity2.rotation = 180
 entity2.ratio = sf.Vector2(60,60)
 #entity.add_child(entity2)
 
-tiles = TileImporter.open('demo.json')
+tiles = TileImporter.open('tiles/tileset.json')
 scene.addall(tiles)
 
 clock = sf.Clock()
