@@ -1,7 +1,6 @@
 import sfml as sf
 import json
 from classes.tilegroup import TileGroup
-from classes.texturemanager import TextureManager as TM
 
 class TileImporter():
     @staticmethod
@@ -13,8 +12,23 @@ class TileImporter():
         tilegroups = []
         data = json.load(file)
 
+        layer = -100
+
         for l in data['layers']:
             if(l['type'] == 'tilelayer'):
-                tilegroups.append(TileGroup(l['width'], l['data'], TM.get('tiles/' + data['tilesets'][0]['image'])))
+                if(l['name'] == 'gamelogic'):
+                    layer = 1
+                    TileImporter.gamelogic()
+                else:
+                    tilesets = []
+                    for t in data['tilesets']:
+                        tilesets.append(t)
 
-        return tilegroups
+                    tilesets.sort(key=lambda x: x['firstgid'], reverse=True)
+
+                    tilegroups.append(TileGroup(l['width'], l['data'], tilesets, layer))
+                    layer += 1
+
+    @staticmethod
+    def gamelogic():
+        pass

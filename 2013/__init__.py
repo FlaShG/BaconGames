@@ -13,13 +13,16 @@ window = sf.RenderWindow(sf.VideoMode(1024, 768), "Bacon Game")
 scene = Scene()
 
 tiles = TileImporter.open('tiles/tileset.json')
-scene.addall(tiles)
+
+#e = SpriteEntity(texture=TM.get('rtm.png'))
+#SpriteEntity(texture=TM.get('rtm.png')).set_parent(e)
 
 clock = sf.Clock()
 Input.define_axis('horizontal', sf.Keyboard.RIGHT, sf.Keyboard.LEFT)
 Input.define_axis('vertical', sf.Keyboard.DOWN, sf.Keyboard.UP)
 
-scene.add(Player())
+player = Player()
+scene.camera.set_parent(player)
 
 # start the game loop
 while window.is_open:
