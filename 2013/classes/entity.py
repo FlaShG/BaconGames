@@ -104,10 +104,17 @@ class SpriteEntity(Entity):
         
         
 class ScreenSpriteEntity(SpriteEntity):
+    def __init__(self, layer=0,
+                       color=sf.Color.WHITE,
+                       texture=None):
+        super(ScreenSpriteEntity, self).__init__(layer, color, texture)
+        self.origin = sf.Vector2(0, 0)
+        
+        
     def draw(self, window, transform):
-        self.origin = sf.Vector2(0,0)
         self.sprite.ratio = self.windowed_ratio(window)
         window.draw(self.sprite, sf.RenderStates(transform=self.global_transform))
 
     def windowed_ratio(self, window):
-        return sf.Vector2(self._ratio.x * window.width, self._ratio.y * window.height)
+        return sf.Vector2((self._ratio.x*1.0) / self.texture_rectangle.width * window.width,
+                                              (self._ratio.y*1.0) / self.texture_rectangle.height * window.height)

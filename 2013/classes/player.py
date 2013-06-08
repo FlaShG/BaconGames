@@ -18,7 +18,7 @@ class Player(SpriteEntity):
 
 class LightCircle(Entity):
     def __init__(self):
-        super(LightCircle, self).__init__(layer = 50)
-        self.circle = ScreenSpriteEntity(texture = TM.get('circle.png'))
+        super(LightCircle, self).__init__()
+        self.circle = ScreenSpriteEntity(texture = TM.get('circle.png'), layer=50)
         #self.circle.set_parent(self)
     
