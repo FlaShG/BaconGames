@@ -30,20 +30,15 @@ class Entity(Object, sf.Transformable):
     def __init__(self):
         super(Entity, self).__init__()
         self.enabled = True
-
-    def onupdate(self, dt):
-        self.update(dt)
-        #for c in self.children:
-        #    c.onupdate(dt)
+        self.global_transform = sf.Transform()
         
     def update(self, dt):
         pass
         
-    def ondraw(self, window, transform):
-        t = transform * self.transform
-        self.draw(window,  t)
+    def build_global_transform(self, transform):
+        self.global_transform = transform * self.transform
         for c in self.children:
-            c.ondraw(window, t)
+            c.build_global_transform(self.global_transform)
         
     def draw(self, window, transform):
         pass
@@ -91,5 +86,5 @@ class SpriteEntity(Entity):
         
     
     def draw(self, window, transform):
-        window.draw(self.sprite, sf.RenderStates(transform=transform))
+        window.draw(self.sprite, sf.RenderStates(transform=transform * self.global_transform))
         

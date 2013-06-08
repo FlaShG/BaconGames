@@ -23,11 +23,20 @@ class Scene(Object):
 
 
     def process(self, window, dt):
+        for e in self.entityset:
+            e.update(dt)
+        
         for e in self.children:
-            e.onupdate(dt)
-        for e in self.children:
-            scale = window.height / (20.0 + self.camera.zoom)
-            e.ondraw(window, sf.Transform().translate(window.size/2.0 - self.camera.position).scale(sf.Vector2(scale, scale)))
+            e.build_global_transform(sf.Transform())
+            
+        scale = window.height / (20.0 + self.camera.zoom)
+        transform = sf.Transform().translate(window.size/2.0)
+        transform = transform.scale(sf.Vector2(scale, scale)) * self.camera.global_transform.inverse
+            
+        for e in self.entityset:
+            e.draw(window, transform)
+            
+            #e.ondraw(window, sf.Transform().translate(window.size/2.0 - self.camera.position).scale(sf.Vector2(scale, scale)))
 
             
             
