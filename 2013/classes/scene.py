@@ -1,4 +1,5 @@
 import sfml as sf
+from components import Transform
 
 class Scene(object):
     def __init__(self):
@@ -9,6 +10,6 @@ class Scene(object):
     
     def process(self, window, dt):
         for e in self.entities:
-            e.update(dt)
+            e.onupdate(dt)
         for e in self.entities:
-            e.draw(window)
+            e.ondraw(window, Transform())

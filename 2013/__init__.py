@@ -12,7 +12,7 @@ scene = Scene()
 try:
     # load a sprite to display
     texture = sf.Texture.from_file("rtm.png")
-    entity = SpriteEntity(position=sf.Vector2(200,200), texture=texture)
+    entity = SpriteEntity(texture=texture)
     scene.add(entity)
 
 except IOError: exit(1)

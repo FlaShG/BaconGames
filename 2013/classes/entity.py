@@ -1,15 +1,16 @@
 import sfml as sf
+from components import Transform
 
 class Entity(object):
     def __init__(self):
-        self.transform = sf.Transform()
+        self.transform = Transform()
         self.enabled = True
         self.children = []
 
-    def onupdate(self, window):
-        self.update()
+    def onupdate(self, dt):
+        self.update(dt)
         for c in self.children:
-            c.onupdate()
+            c.onupdate(dt)
         
     def update(self, dt):
         pass
@@ -43,11 +44,13 @@ class SpriteEntity(VisibleEntity):
         self.center = center
         
     def draw(self, window, transform):
-        self.sprite.global_bounds = transform.transform_rectangle(sf.Rectangle(sf.Vector2(-0.5,-0.5), sf.Vector2(0.5,0.5))
+        #self.sprite.global_bounds = transform.transform_rectangle(sf.Rectangle(sf.Vector2(-0.5,-0.5), sf.Vector2(0.5,0.5)))
         #self.sprite.rotation = self.rotation
+        
+        self.transform.apply_to(self.sprite)
         
         window.draw(self.sprite)
         
     def update(self, dt):
-        self.transform.position.x += dt * 100
+        self.transform.position += sf.Vector2(dt * 100, 0)
         
