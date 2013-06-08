@@ -4,7 +4,7 @@ from classes.entity import SpriteEntity
 from classes.scene import Scene
 from classes.input import Input
 from classes.tileimporter import TileImporter
-
+from classes.player import Player
 
 # create the main window
 #window = sf.RenderWindow(sf.VideoMode(640, 480), "Bacon Game")
@@ -29,6 +29,8 @@ scene.add(tiles)
 
 clock = sf.Clock()
 Input.define_axis('horizontal', sf.Keyboard.RIGHT, sf.Keyboard.LEFT)
+
+scene.add(Player())
 
 # start the game loop
 while window.is_open:
