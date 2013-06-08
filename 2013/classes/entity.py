@@ -1,18 +1,40 @@
 import sfml as sf
 from classes.input import Input
 
-class Entity(sf.Transformable):
+class Object(object):
+    root = None
+
     def __init__(self):
-        self.enabled = True
         self.children = []
+        self.parent = None
+        self.set_parent(Object.root)
+        
+    def set_parent(self, parent):
+        if self.parent != None:
+            try: self.parent.children.remove(self)
+            except: pass
+        self.parent = parent
+        if self.parent != None:
+            parent.children.append(self)
+            self.get_root().add_to_set(self)
+            
+    def get_root(self):
+        return self if self.parent == None else self.parent.get_root()
+        
+    def add_to_set(self):
+        pass
+            
+            
+
+class Entity(Object, sf.Transformable):
+    def __init__(self):
+        super(Entity, self).__init__()
+        self.enabled = True
 
     def onupdate(self, dt):
         self.update(dt)
-        for c in self.children:
-            c.onupdate(dt)
-            
-    def add_child(self, child):
-        self.children.append(child)
+        #for c in self.children:
+        #    c.onupdate(dt)
         
     def update(self, dt):
         pass
@@ -45,10 +67,6 @@ class SpriteEntity(Entity):
     @ratio.setter
     def ratio(self, value):
         self._ratio = value
-        #self.sprite.ratio = sf.Vector2((value.x*1.0) / (self.sprite.texture.width / self.texture_rectangle.width),
-        #                               (value.y*1.0) / (self.sprite.texture.height / self.texture_rectangle.height))
-        #self.sprite.ratio = sf.Vector2((value.x*1.0) / self.sprite.texture.width,
-        #                               (value.y*1.0) / self.sprite.texture.height)
         self.sprite.ratio = sf.Vector2((value.x*1.0) / self.texture_rectangle.width,
                                        (value.y*1.0) / self.texture_rectangle.height)                             
                                        
