@@ -18,8 +18,14 @@ class Player(AnimatorEntity):
         self.gen_clip(path='animations/player/girl_bottom.png', quantity=2, interval=0.3)
 
         self.speed = 4
-        self.light = LightCircle()
-        self.light.set_parent(self)
+
+        self.light_circle = LightCircle()
+        self.no_light_circle = NoLightCircle()
+        self.light_circle.set_parent(self)
+        self.no_light_circle.set_parent(self)
+        self.no_light_circle.enabled = False
+        self.light_on = True
+
         collider_height = 0.3
         self.collider = Collider(position=self.position,
                                  size=sf.Vector2(0.2,collider_height),
@@ -49,11 +55,38 @@ class Player(AnimatorEntity):
         self.position = self.collider.move(input * dt * self.speed)
         #self.move(sf.Vector2(hor, ver)*dt*self.speed)
 
+        if Input.get_key_down(sf.Keyboard.R_CONTROL):
+            self.light_on = not self.light_on
+        if not self.light_on:
+            self.no_light_circle.enabled = True
+            self.light_circle.enabled = False
+        else:
+            self.no_light_circle.enabled = False
+            self.light_circle.enabled = True
+
+
+        
 
 class LightCircle(Entity):
     def __init__(self):
         super(LightCircle, self).__init__()
         self.circle = ScreenSpriteEntity(texture = TM.get('circle.png'), layer=50, fullscreen=False)
+        self.block_left = ScreenSpriteEntity(texture = TM.get('white.png'),
+                                             color = sf.Color.BLACK,
+                                             layer=50,
+                                             fullscreen=False)
+        self.block_left.move(sf.Vector2(0.5,0))
+        self.block_right = ScreenSpriteEntity(texture = TM.get('white.png'),
+                                              color = sf.Color.BLACK,
+                                              layer=50,
+                                              fullscreen=False)
+        self.block_right.move(sf.Vector2(-0.5,0))
+
+class NoLightCircle(Entity):
+    def __init__(self):
+        super(NoLightCircle, self).__init__()
+        self.circle = ScreenSpriteEntity(texture = TM.get('white.png'), color = sf.Color.BLACK, layer=50, fullscreen=False)
+
         self.block_left = ScreenSpriteEntity(texture = TM.get('white.png'),
                                              color = sf.Color.BLACK,
                                              layer=50,
