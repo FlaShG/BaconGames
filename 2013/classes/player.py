@@ -10,7 +10,7 @@ from classes.V2 import V2
 import sfml as sf
 
 
-class Player(SpriteEntity):
+class Player(AnimatorEntity):
     def __init__(self):
         super(Player, self).__init__(path='animations/player/girl', quantity=2, interval=0.3)
         self.speed = 4
@@ -25,7 +25,7 @@ class Player(SpriteEntity):
         hor = Input.get_axis('horizontal')
         ver = Input.get_axis('vertical')
         input = V2.normalize(sf.Vector2(hor, ver))
-        self.position = self.collider.move(input * dt * speed)
+        self.position = self.collider.move(input * dt * self.speed)
         #self.move(sf.Vector2(hor, ver)*dt*self.speed)
 
 
