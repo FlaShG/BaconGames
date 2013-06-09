@@ -11,8 +11,12 @@ import sfml as sf
 
 
 class Player(AnimatorEntity):
+    last_hor = 0
+    last_ver = 0
+
     def __init__(self):
-        super(Player, self).__init__(path='animations/player/girl', quantity=2, interval=0.3)
+        super(Player, self).__init__(path='animations/player/girl_right.png', quantity=2, interval=0.3)
+        self.gen_clip(path='animations/player/girl_left.png', quantity=2, interval=0.3)
         self.speed = 4
         self.light = LightCircle()
         self.light.set_parent(self)
