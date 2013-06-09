@@ -10,3 +10,7 @@ class V2(object):
     @staticmethod
     def length(v):
         return math.sqrt(math.pow(v.x, 2) + math.pow(v.y, 2))
+        
+    @staticmethod
+    def normalize(v):
+        return v / V2.length(v)
