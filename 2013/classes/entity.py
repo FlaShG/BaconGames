@@ -152,10 +152,15 @@ class ScreenSpriteEntity(SpriteEntity):
 class TextEntity(Entity):
     def __init__(self, text):
         self.text = sf.Text(text)
+        self.text.font = sf.Font.from_file("fonts/arial.ttf")
+        self.text.color = sf.Color.WHITE
+        self.text.character_size = 30
+        
         self.__renderstate = sf.RenderStates()
         
+        
     def draw(self, window, transform):
-        self.__renderstate.transform = transform * self.global_transform
-        window.draw(self.text, self.__renderstate)
+        self.__renderstate.transform = self.global_transform
+        window.draw(self.text)#, self.__renderstate)
         
         

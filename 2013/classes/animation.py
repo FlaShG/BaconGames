@@ -32,7 +32,8 @@ class AnimatorEntity(SpriteEntity):
         if(self.timer > self.clips[self.play_id]['interval']):
             self.timer = 0.0
             self.sprite.texture = self.clips[self.play_id]['texture']
-            self.texture_rectangle = sf.Rectangle((self.clip_id * 32, 0), self.clips[self.play_id]['size'])
+            size = self.clips[self.play_id]['size']
+            self.texture_rectangle = sf.Rectangle((self.clip_id * size.x, 0), size)
 
             if(self.clip_id == (self.clips[self.play_id]['quantity'] - 1)):
                 self.clip_id = 0
