@@ -10,41 +10,39 @@ import math
 class Collider(object):
     __all = set()
 
-
     def __init__(self, position = sf.Vector2(0,0), size = sf.Vector2(1,1)):
         Collider.__all.add(self)
         self.__position = position
         self.__size = size
         self.recalculate_rect()
         self.peaceful = True
-        
-       
+
     @property
     def position(self):
         return self.__position
-        
+
     @position.setter
     def position(self, pos):
         self.__position = pos
         self.recalculate_rect()
-        
+
     @property
     def size(self):
         return self.__size
-        
+
     @size.setter
     def size(self, size):
         self.__size = size
         self.recalculate_rect()
-        
+
     @property
     def radius(self):
         return self.__radius
-        
+
     def recalculate_rect(self):
         self.__rect = sf.Rectangle(self.__position - self.__size/2.0, self.__size)
         self.__radius = max(self.__size.x, self.__size.y) * 2
-        
+
     """
     moves the collider, colliding with others.
     returns the movement delta
@@ -52,7 +50,7 @@ class Collider(object):
     def move_delta(self, dir, recursion_left=3):
         self.peaceful = True
         self.position += dir
-    
+
         if recursion_left > 0:
             for c in Collider.__all:
                 dist = c.position - self.position
@@ -64,18 +62,18 @@ class Collider(object):
                         horizontal = math.fabs(dist.x) > math.fabs(dist.y) 
                         #do we have to move into positive direction?
                         positive = (self.position.x > c.position.x) if horizontal else (self.position.y > c.position.y)
-                                   
+
                         sign = 1 if positive else -1
-                        
+
                         dir = sf.Vector2(1,0) if horizontal else sf.Vector2(0,1)
                         dir *= sign
-                        
+
                         return dir + self.move(dir, recursion_left-1)
         else:
             self.peaceful = False
 
         return dir
-        
+
     """
     moves the collider, colliding with others.
     returns the resulting position
@@ -83,14 +81,14 @@ class Collider(object):
     def move(self, dir, recursion_left=3):
         self.move_delta(dir, recursion_left)
         return self.position
-        
-        
+
+
     def on_collision(self, other):
         pass
-        
+
     def on_trigger(self, other):
         pass
-        
+
         
     @staticmethod
     def intersects(a, b):
@@ -109,6 +107,4 @@ class Collider(object):
         
         #return a.x < bx2 and ax2 > b.x and a.x < by2 and ay2 > b.y
         return a.left < b.right and a.right > b.left and a.top < b.bottom and a.bottom > b.top
-        
-        
-        
+
