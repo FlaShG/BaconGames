@@ -15,11 +15,13 @@ class AnimatorEntity(SpriteEntity):
     def __init__(self, path, quantity, interval):
         super(AnimatorEntity, self).__init__(texture=TM.get(path))
         self.gen_clip(path=path, quantity=quantity, interval=interval)
-        self.timer = interval
+        self.timer = 100
 
 
     def play(self, play_id):
-        self.play_id = play_id
+        if(play_id != self.play_id):
+            self.play_id = play_id
+            self.timer = 100
 
 
     def gen_clip(self, path, quantity, interval):
