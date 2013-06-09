@@ -65,20 +65,18 @@ class Witch(Monster):
         self.speed = 1.5
         self.scale(sf.Vector2(2,2))
         self.collider.size = sf.Vector2(2,2)
-        self.sound = SM.get('sounds/witch_rage_0.ogg')
+        #self.sound = SM.get('sounds/witch_rage_0.ogg')
 
     def update(self, dt):
         super(Witch, self).update(dt)
 
-        print(self.sound.status)
-
-        if V2.length(self.direction_to_player()) < 7:
-            if self.sound.status == sf.audio.SoundSource.PLAYING:
-                pass
-            else:
-                self.sound.play()
-        else:
-            self.sound.stop()
+#        if V2.length(self.direction_to_player()) < 7:
+#            if self.sound.status != 3:
+#                print('foo')
+#            else:
+#                self.sound.play()
+#        else:
+#            self.sound.stop()
 
 
         if self.in_light():
