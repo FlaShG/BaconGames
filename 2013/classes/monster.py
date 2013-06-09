@@ -17,10 +17,7 @@ class Monster(AnimatorEntity):
         self.scale
         self.in_light_distance = 6
         self.collider = Collider()
-        
-         
-    def update(self, dt):
-        pass
+
             
     def in_light(self):
         if Player.instance.light_on:
@@ -40,5 +37,6 @@ class Blob(Monster):
         self.collider.size = sf.Vector2(2,2)
 
     def update(self, dt):
+        super(Blob, self).update(dt)
         if self.in_light():
             self.position = self.collider.move(self.direction_to_player_normalized() * self.speed * dt)
