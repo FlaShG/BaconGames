@@ -19,18 +19,18 @@ class TileGroup(Entity):
                         break;
 
                 tile = SpriteEntity(texture=TM.get('tiles/' + tileset['image']), layer=layer)
-                tiles_per_line = tileset['imagewidth'] / tileset['tilewidth']
+                tiles_per_line = tileset['imagewidth'] // tileset['tilewidth']
                 tile_offset = d - tileset['firstgid']
                 tile.texture_rectangle = sf.Rectangle(
                     (
                         (
-                            (tile_offset%tiles_per_line)*32 - 0.5
+                            (tile_offset%tiles_per_line)*32
                         ),
                         (
-                            (tile_offset/tiles_per_line)*32 - 0.5
+                            (tile_offset//tiles_per_line)*32
                         )
                     ),
-                    (31, 31)
+                    (32, 32)
                 )
 
                 tile.texture_rectangle
