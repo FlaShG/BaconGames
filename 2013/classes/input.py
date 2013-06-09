@@ -32,7 +32,8 @@ class Input():
         
     @staticmethod
     def get_key(code):
-        return code in Input.hold or code in Input.pressed
+        #return code in Input.hold or code in Input.pressed
+        return sf.Keyboard.is_key_pressed(code)
         
     @staticmethod
     def get_key_down(code):
