@@ -3,6 +3,7 @@
 """
 import sfml as sf
 from classes.input import Input
+from classes.fontmanager import FontManager as FM
 
 class Object(object):
     root = None
@@ -130,6 +131,8 @@ class ScreenSpriteEntity(SpriteEntity):
         super(ScreenSpriteEntity, self).__init__(layer, color, texture)
         self.fullscreen = fullscreen
         
+        self.__renderstate = sf.RenderStates()
+        
         
     def draw(self, window, transform):
         position = self.position
@@ -137,9 +140,11 @@ class ScreenSpriteEntity(SpriteEntity):
         self.global_transform.translate(sf.Vector2(position.x * fullscreen_offset, position.y * fullscreen_offset))
         
         self.sprite.ratio = self.windowed_ratio(window)
-        t = sf.Transform().translate(sf.Vector2(window.width / 2.0, window.height / 2.0))
+        t = sf.Transform().translate(window.size / 2.0)
         
-        window.draw(self.sprite, sf.RenderStates(transform = t * self.global_transform))
+        self.__renderstate.transform = transform = t * self.global_transform
+        
+        window.draw(self.sprite, self.__renderstate)
         
         self.position = position
 
@@ -151,16 +156,23 @@ class ScreenSpriteEntity(SpriteEntity):
 
 class TextEntity(Entity):
     def __init__(self, text):
+        super(TextEntity, self).__init__()
         self.text = sf.Text(text)
-        self.text.font = sf.Font.from_file("fonts/arial.ttf")
+        
+        self.text.font = FM.get("fonts/toscuchet.otf")
         self.text.color = sf.Color.WHITE
-        self.text.character_size = 30
+        self.text.character_size = 72
         
         self.__renderstate = sf.RenderStates()
         
         
     def draw(self, window, transform):
-        self.__renderstate.transform = self.global_transform
-        window.draw(self.text)#, self.__renderstate)
+        scale = sf.Vector2(window.width / 768.0, window.height / 768.0)
+        t = sf.Transform().scale(sf.Vector2(1,1) * scale.y)
+        scaled_bounds = sf.Vector2(self.text.local_bounds.size.x * scale.y, self.text.local_bounds.size.y * scale.y)
+        t.translate((window.size - scaled_bounds) / 2.0)
+    
+        self.__renderstate.transform = t * self.global_transform
+        window.draw(self.text, self.__renderstate)
         
         

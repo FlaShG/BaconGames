@@ -18,12 +18,12 @@ window = sf.RenderWindow(sf.VideoMode(1024, 768), "Bacon Game")
 
 #scene = Scene()
 
-#TileImporter.open('tiles/tileset.json')
-Scenes.game_over()
+TileImporter.open('tiles/tileset.json')
+#Scenes.game_over()
 
 #Sound-Testing
 sound = SM.get('sounds/player_idle_0.ogg')
-sound.play()
+#sound.play()
 
 
 #SpriteEntity(texture=TM.get('rtm.png')).set_collider(Collider())
