@@ -1,10 +1,5 @@
 
 TODOS:
-* Tiled Importer [Lars]
 * Tilesets [Ina]
-* Player Code [Anne]
-* Player design []
-* Build in pybox2D [Sascha]
-* Player Animations [Lars]
-* Normalize movement vector for diagonal movement [Anne-Victoria]
-* Toggle portable light on/off [Anne-Victoria]
+* Monster Code [Sascha]
+* Sounds [Lars]
