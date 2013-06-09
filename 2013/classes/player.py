@@ -1,3 +1,6 @@
+"""
+/classes/player.py
+"""
 from classes.input import Input
 from classes.entity import Entity, SpriteEntity, ScreenSpriteEntity
 from classes.texturemanager import TextureManager as TM
@@ -31,5 +34,3 @@ class LightCircle(Entity):
                                               color = sf.Color.BLACK,
                                               layer=50,
                                               fullscreen=False)
-        self.block_right.move(sf.Vector2(-0.5,0))
-    

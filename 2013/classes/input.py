@@ -1,3 +1,6 @@
+"""
+/classes/input.py
+"""
 import sfml as sf
 
 class Input():
