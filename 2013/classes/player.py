@@ -4,30 +4,33 @@
 from classes.input import Input
 from classes.entity import Entity, SpriteEntity, ScreenSpriteEntity
 from classes.texturemanager import TextureManager as TM
+from classes.animation import AnimatorEntity
 from classes.collider import Collider
 from classes.V2 import V2
 import sfml as sf
 
 
-class Player(SpriteEntity):
+class Player(AnimatorEntity):
     def __init__(self):
-        super(Player, self).__init__(texture=TM.get('player.png'))
+        super(Player, self).__init__(path='animations/player/girl', quantity=2, interval=0.3)
         self.speed = 4
         self.light = LightCircle()
-        self.light.set_parent(self)
-        
-        self.collider = Collider()
+        self.light.set_parent(self) 
+        self.collider = Collider(position=self.position)
 
+    def set_position(self, pos):
+        self.position = pos
+        self.collider.position = pos
 
     def update(self, dt):
+        super(Player, self).update(dt=dt)
         hor = Input.get_axis('horizontal')
         ver = Input.get_axis('vertical')
         input = V2.normalize(sf.Vector2(hor, ver))
-        
-        self.position = self.collider.move(input * dt * speed)
+
+        self.position = self.collider.move(input * dt * self.speed)
         #self.move(sf.Vector2(hor, ver)*dt*self.speed)
-        
-        
+
 
 class LightCircle(Entity):
     def __init__(self):
