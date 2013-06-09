@@ -52,7 +52,11 @@ class Entity(Object, sf.Transformable):
         for c in self.children:
             c.build_global_transform(self.global_transform)
         #print("buildin transform")
-        
+  
+    def ondraw(self, window, transform):
+        if self.enabled:
+            self.draw(window, transform)
+  
     def draw(self, window, transform):
         pass
 

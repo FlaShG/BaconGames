@@ -48,7 +48,7 @@ class Scene(Object):
             
         for layer in self.entityset:
             for e in self.entityset[layer]:
-                e.draw(window, transform)
+                e.ondraw(window, transform)
             
             
 class Camera(Entity):
