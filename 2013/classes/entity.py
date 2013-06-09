@@ -116,13 +116,10 @@ class ScreenSpriteEntity(SpriteEntity):
         
     def draw(self, window, transform):
         position = self.position
-        print(position)
-        #self.position *= window.height
         fullscreen_offset = ((window.height*2.0) - 1)
         self.global_transform.translate(sf.Vector2(position.x * fullscreen_offset, position.y * fullscreen_offset))
         
         self.sprite.ratio = self.windowed_ratio(window)
-        
         t = sf.Transform().translate(sf.Vector2(window.width / 2.0, window.height / 2.0))
         
         window.draw(self.sprite, sf.RenderStates(transform = t * self.global_transform))
