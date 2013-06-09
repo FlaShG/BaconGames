@@ -11,7 +11,7 @@ class Input():
     
     @staticmethod
     def process_event(event):
-        if(event.pressed and not Input.get_key(event.code)):
+        if(event.pressed and not event.code in Input.pressed and not event.code in Input.hold):
             Input.pressed.append(event.code)
         elif(event.released):
             try: Input.hold.remove(event.code)

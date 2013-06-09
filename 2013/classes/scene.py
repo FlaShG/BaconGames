@@ -12,19 +12,17 @@ class Scene(Object):
         Object.root = self
         
         self.entityset = OrderedDict()
+        self.layer_change_list = dict()
+        
         self.camera = None
         self.set_camera(Camera())
 
+        
+
     def add_to_set(self, entity, layer = 0):
-        try:
-            self.entityset[entity.layer].remove(entity)
-        except: pass
-    
-        if not layer in self.entityset:
-            self.entityset[layer] = set()
-            self.entityset = OrderedDict(sorted(self.entityset.items(), key=lambda t: t[0]))
-            
-        self.entityset[layer].add(entity)
+        #print("Adding to Layer %i" % layer)
+        self.layer_change_list[entity] = (entity.layer, layer)
+
 
             
     def set_camera(self, camera):
@@ -38,6 +36,23 @@ class Scene(Object):
         for layer in self.entityset:
             for e in self.entityset[layer]:
                 e.update(dt)
+                
+        for entity in self.layer_change_list:
+            change = self.layer_change_list[entity]
+            from_layer = change[0]
+            to_layer = change[1]
+            try:
+                self.entityset[from_layer].remove(entity)
+            except: pass
+            
+            if not to_layer in self.entityset:
+                self.entityset[to_layer] = set()
+                self.entityset = OrderedDict(sorted(self.entityset.items(), key=lambda t: t[0]))
+                
+            self.entityset[to_layer].add(entity)
+            
+        self.layer_change_list = dict()
+
             
         for e in self.children:
             e.build_global_transform(sf.Transform())

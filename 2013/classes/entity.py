@@ -23,7 +23,7 @@ class Object(object):
             self.get_root().add_to_set(self, self.layer)
             
     def set_layer(self, layer):
-        self.get_root().add_to_set(self, self.layer)
+        self.get_root().add_to_set(self, layer)
         self.__layer = layer
         
     @property
