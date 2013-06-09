@@ -7,17 +7,12 @@ from classes.texturemanager import TextureManager as TM
 
 class AnimatorEntity(SpriteEntity):
 
-    clips = []
-    timer = 0.0
-    clip_id = 0
-    play_id = 0
-
     def __init__(self, clip):
-        path = clip['path']
-        quantity = clip['quantity']
-        interval = clip['interval']
-        super(AnimatorEntity, self).__init__(texture=TM.get(path))
-        self.gen_clip(clip)
+        super(AnimatorEntity, self).__init__(texture=TM.get(clip['path']))
+        self.clips = []
+        self.clip_id = 0
+        self.play_id = 0
+        self.gen_clip(clip=clip)
         self.timer = 100
 
 
