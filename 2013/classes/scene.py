@@ -42,7 +42,7 @@ class Scene(Object):
         for e in self.children:
             e.build_global_transform(sf.Transform())
                 
-        scale = window.height / (20.0 + self.camera.zoom)
+        scale = window.height / (16.0 + self.camera.zoom)
         transform = sf.Transform().translate(window.size/2.0)
         transform = transform.scale(sf.Vector2(scale, scale)) * self.camera.global_transform.inverse
             

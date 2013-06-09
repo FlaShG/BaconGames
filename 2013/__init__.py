@@ -18,8 +18,11 @@ scene = Scene()
 
 tiles = TileImporter.open('tiles/tileset.json')
 
+SpriteEntity(texture=TM.get('rtm.png')).set_collider(Collider())
+
 e = SpriteEntity(texture=TM.get('rtm.png'))
-e.collider = Collider()
+e.set_collider(Collider())
+e.set_position(sf.Vector2(2,0))
 #SpriteEntity(texture=TM.get('rtm.png')).set_parent(e)
 
 #e = ScreenSpriteEntity(texture=TM.get('rtm.png'))

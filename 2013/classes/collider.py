@@ -47,15 +47,17 @@ class Collider(object):
     moves the collider, colliding with others.
     returns the movement delta
     """
-    def move_delta(self, dir, recursion_left=3):
+    def move_delta(self, direction, recursion_left=3):
         self.peaceful = True
-        self.position += dir
+        self.position += direction
 
         if recursion_left > 0:
             for c in Collider.__all:
                 dist = c.position - self.position
                 if c != self and V2.length(dist) <= self.radius+c.radius:
-                    intersection = Collider.intersects(self.__rect, c.__rect)
+                    r1 = self.__rect
+                    r2 = c.__rect
+                    intersection = Collider.intersects(r1, r2)
                     if intersection:
                         #do we have to move into horizontal direction?
                         #horizontal = intersection.width > intersection.height
@@ -67,12 +69,21 @@ class Collider(object):
 
                         dir = sf.Vector2(1,0) if horizontal else sf.Vector2(0,1)
                         dir *= sign
-
-                        return dir + self.move(dir, recursion_left-1)
+                        
+                        if dir.x == 1:
+                            dir.x = r2.right - r1.left
+                        elif dir.x == -1:
+                            dir.x = r2.left - r1.right
+                        elif dir.y == 1:
+                            dir.y = r2.bottom - r1.top
+                        elif dir.y == -1:
+                            dir.y = r2.top - r1.bottom
+                            
+                        return direction + self.move(dir, recursion_left-1)
         else:
             self.peaceful = False
 
-        return dir
+        return direction
 
     """
     moves the collider, colliding with others.

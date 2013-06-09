@@ -43,6 +43,7 @@ class Entity(Object, sf.Transformable):
         super(Entity, self).__init__(layer)
         self.enabled = True
         self.global_transform = sf.Transform()
+        self.collider = None
         
     def update(self, dt):
         pass
@@ -52,13 +53,23 @@ class Entity(Object, sf.Transformable):
         for c in self.children:
             c.build_global_transform(self.global_transform)
         #print("buildin transform")
-  
+
     def ondraw(self, window, transform):
         if self.enabled:
             self.draw(window, transform)
   
     def draw(self, window, transform):
         pass
+        
+    def set_position(self, position):
+        self.position = position
+        if self.collider != None:
+            self.collider.position = position
+            
+    def set_collider(self, collider):
+        self.collider = collider
+        if collider != None:
+            collider.position = self.position
 
 
 class SpriteEntity(Entity):

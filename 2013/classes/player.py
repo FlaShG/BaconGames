@@ -15,8 +15,11 @@ class Player(AnimatorEntity):
         super(Player, self).__init__(path='animations/player/girl', quantity=2, interval=0.3)
         self.speed = 4
         self.light = LightCircle()
-        self.light.set_parent(self) 
-        self.collider = Collider(position=self.position)
+        self.light.set_parent(self)
+        
+        size = sf.Vector2(1,1)*0.8
+        self.collider = Collider(position=self.position, size=size)
+        self.scale(size)
 
     def set_position(self, pos):
         self.position = pos
