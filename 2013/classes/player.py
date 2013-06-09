@@ -22,7 +22,7 @@ class Player(AnimatorEntity):
         self.light.set_parent(self)
         collider_height = 0.3
         self.collider = Collider(position=self.position,
-                                 size=sf.Vector2(0.1,collider_height),
+                                 size=sf.Vector2(0.2,collider_height),
                                  offset=sf.Vector3(0,(1-collider_height)/2.0))
         self.scale(sf.Vector2(1,1)*0.8)
 

@@ -130,9 +130,6 @@ class Collider(object):
             else:
                 v.x = 0
                 v.y = 1 if v.y > 0 else -1
-                
-                
-            print(v)
             
             return True, v
                 
