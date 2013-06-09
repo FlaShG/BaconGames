@@ -17,6 +17,7 @@ class Monster(AnimatorEntity):
         self.scale
         self.in_light_distance = 6
         self.collider = Collider()
+        self.collider.event_handler = self
 
             
     def in_light(self):
@@ -28,6 +29,10 @@ class Monster(AnimatorEntity):
         
     def direction_to_player_normalized(self):
         return V2.normalize(self.direction_to_player())
+        
+    def on_collision(self, other):
+        if other.event_handler == Player.instance:
+            Player.instance.kill()
             
 class Blob(Monster):
     def __init__(self):

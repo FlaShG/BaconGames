@@ -17,6 +17,8 @@ class Collider(object):
         self.position = position #must use setter!
         #self.recalculate_rect()
         self.peaceful = True
+        
+        self.event_handler = None
 
     @property
     def position(self):
@@ -70,6 +72,8 @@ class Collider(object):
                     r2 = c.__rect
                     intersects, dir = Collider.intersects(r1, r2)
                     if intersects:
+                        self.on_collision(c)
+                        c.on_collision(self)
                         """
                         #do we have to move into horizontal direction?
                         #horizontal = intersection.width > intersection.height
@@ -109,7 +113,8 @@ class Collider(object):
 
 
     def on_collision(self, other):
-        pass
+        if self.event_handler != None:
+            self.event_handler.on_collision(other)
 
     def on_trigger(self, other):
         pass
