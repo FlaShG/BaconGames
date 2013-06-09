@@ -16,15 +16,19 @@ class Player(SpriteEntity):
         self.light = LightCircle()
         self.light.set_parent(self)
         
-        self.collider = Collider()
+        self.collider = Collider(position=self.position)
+        
 
+    def set_position(self, pos):
+        self.position = pos
+        self.collider.position = pos
 
     def update(self, dt):
         hor = Input.get_axis('horizontal')
         ver = Input.get_axis('vertical')
         input = V2.normalize(sf.Vector2(hor, ver))
         
-        self.position = self.collider.move(input * dt * speed)
+        self.position = self.collider.move(input * dt * self.speed)
         #self.move(sf.Vector2(hor, ver)*dt*self.speed)
         
         

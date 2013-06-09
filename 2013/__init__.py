@@ -3,11 +3,12 @@
 """
 import sfml as sf
 from classes.texturemanager import TextureManager as TM
-from classes.entity import ScreenSpriteEntity
+from classes.entity import SpriteEntity
 from classes.scene import Scene
 from classes.input import Input
 from classes.tileimporter import TileImporter
 from classes.player import Player
+from classes.collider import Collider
 
 # create the main window
 #window = sf.RenderWindow(sf.VideoMode(640, 480), "Bacon Game")
@@ -17,7 +18,8 @@ scene = Scene()
 
 tiles = TileImporter.open('tiles/tileset.json')
 
-#e = SpriteEntity(texture=TM.get('rtm.png'))
+e = SpriteEntity(texture=TM.get('rtm.png'))
+e.collider = Collider()
 #SpriteEntity(texture=TM.get('rtm.png')).set_parent(e)
 
 #e = ScreenSpriteEntity(texture=TM.get('rtm.png'))

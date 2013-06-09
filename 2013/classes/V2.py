@@ -2,6 +2,8 @@
 /classes/V2.py
 """
 
+import math
+
 class V2(object):
     @staticmethod
     def distance(a,b):
@@ -13,4 +15,5 @@ class V2(object):
         
     @staticmethod
     def normalize(v):
-        return v / V2.length(v)
+        divisor = V2.length(v)
+        return v / divisor if divisor != 0 else v

@@ -3,14 +3,20 @@
 """
 
 import sfml as sf
-import classes.V2
+from classes.V2 import V2
+import math
 
 
 class Collider(object):
     __all = set()
 
 
-
+    def __init__(self, position = sf.Vector2(0,0), size = sf.Vector2(1,1)):
+        Collider.__all.add(self)
+        self.__position = position
+        self.__size = size
+        self.recalculate_rect()
+        self.peaceful = True
         
        
     @property
@@ -48,12 +54,14 @@ class Collider(object):
         self.position += dir
     
         if recursion_left > 0:
-            for c in __all:
-                if V2.distance(self.position, c.position) <= self.radius+c.radius:
-                    intersection = self.__rect.intersects(c.__rect)
-                    if intersection != None:
+            for c in Collider.__all:
+                dist = c.position - self.position
+                if c != self and V2.length(dist) <= self.radius+c.radius:
+                    intersection = Collider.intersects(self.__rect, c.__rect)
+                    if intersection:
                         #do we have to move into horizontal direction?
-                        horizontal = intersection.width > intersection.height
+                        #horizontal = intersection.width > intersection.height
+                        horizontal = math.fabs(dist.x) > math.fabs(dist.y) 
                         #do we have to move into positive direction?
                         positive = (self.position.x > c.position.x) if horizontal else (self.position.y > c.position.y)
                                    
@@ -72,8 +80,8 @@ class Collider(object):
     moves the collider, colliding with others.
     returns the resulting position
     """
-    def move(self, dir, recursion_left=3)
-        self.move(dir, recursion_left)
+    def move(self, dir, recursion_left=3):
+        self.move_delta(dir, recursion_left)
         return self.position
         
         
@@ -82,4 +90,25 @@ class Collider(object):
         
     def on_trigger(self, other):
         pass
+        
+        
+    @staticmethod
+    def intersects(a, b):
+        #result = None
+        
+        #ax2 = a.x + a.width
+        #ay2 = a.y + a.height
+        #bx2 = b.x + b.width
+        #by2 = b.y + b.height
+        
+        #left = bx2 - a.x
+        #right = ax2 - b.x
+        #up = by2 - a.y
+        #down = ay2 - b.y
+        # > 0
+        
+        #return a.x < bx2 and ax2 > b.x and a.x < by2 and ay2 > b.y
+        return a.left < b.right and a.right > b.left and a.top < b.bottom and a.bottom > b.top
+        
+        
         
