@@ -7,6 +7,7 @@ from classes.animation import AnimatorEntity
 from classes.collider import Collider
 from classes.V2 import V2
 from classes.player import Player
+from classes.soundmanager import SoundManager as SM
 import sfml as sf
 
 
@@ -64,8 +65,21 @@ class Witch(Monster):
         self.speed = 1.5
         self.scale(sf.Vector2(2,2))
         self.collider.size = sf.Vector2(2,2)
+        self.sound = SM.get('sounds/witch_rage_0.ogg')
 
     def update(self, dt):
         super(Witch, self).update(dt)
+
+        print(self.sound.status)
+
+        if V2.length(self.direction_to_player()) < 7:
+            if self.sound.status == sf.audio.SoundSource.PLAYING:
+                pass
+            else:
+                self.sound.play()
+        else:
+            self.sound.stop()
+
+
         if self.in_light():
             self.position = self.collider.move(self.direction_to_player_normalized() * self.speed * dt)

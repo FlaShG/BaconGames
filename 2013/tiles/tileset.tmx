@@ -23,7 +23,7 @@
  </layer>
  <layer name="gamelogic" width="64" height="64">
   <data encoding="base64" compression="zlib">
-   eJzt2ssOwiAQBdC2Ji78/w82XZggKcxD6rzuSYwLScOFgbbEbYN9//5Q7bLijkMmbdZR7sxjwck/av8PlWrRymzdc/fETPMkySEdO2/jdFdfPGXk0Ox7B7EuJNey1vZnRf+85ZO4K/+sXsCfvg4kz0eaGsp4L5Xwln90/155PU9W989z1g/vc2JBsg4xfjX0NaHZq2dtreuIU+erf4skc8b+uZy674/OCCXnaNG0a/2x+Jz0GWis+jm+2gcjvftTdT1rT7XxlFNCeuYpmf+IuO/AWfNzRc6v7fPV/hExf097ftN+V5B1/q8cTb6sz8PVz/5/oX0vfhUdr4iyrnsAAAAAAAAAAACIhfrPVubzyuz5KJWzn5Dfuge2kJ/X7g07XAGj
+   eJzt2ssKwjAQBdC2ggv//4PFRSGGJvMwNTM394C4MJTcvBvcNtr3749UDpW2HZCUWVu5kdtCk79V/h9WGouz9Oa9dk1E6idLDmvbRWunu+oSKaOGZ907hHlhedZsZX1G1C9aPou78vfGC8VTjwPL+cgzhhD3Uoto+Vv798jnRTK6fpGznqL3yQyWecj2W0M9Jjxrda/s7HGkGeejf8sEOWN9Lpf2/dYdoeUeLZtyrj8G35M+E7VV3cdX62Cmd39pXPfKS2Ui5bQ4++gl7FWe/s9I+w6Mml8rc35vna/Wj4z5a977m/J7Baj9f+Uo8qGeh1e/+/+F9724dc6geFDnPREREREREREREeUi/WcL+b4SPZ9k5ewfzD+7BnMxv67cG9E2Aa4=
   </data>
  </layer>
  <layer name="flying_objects" width="64" height="64">
