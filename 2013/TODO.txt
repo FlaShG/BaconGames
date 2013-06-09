@@ -5,3 +5,4 @@ TODOS:
 * Player Code [Anne]
 * Player design []
 * Build in pybox2D [Sascha]
+* Player Animations [Lars]

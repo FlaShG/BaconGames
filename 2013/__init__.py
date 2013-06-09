@@ -1,6 +1,6 @@
 import sfml as sf
 from classes.texturemanager import TextureManager as TM
-from classes.entity import SpriteEntity
+from classes.entity import ScreenSpriteEntity
 from classes.scene import Scene
 from classes.input import Input
 from classes.tileimporter import TileImporter
@@ -16,6 +16,9 @@ tiles = TileImporter.open('tiles/tileset.json')
 
 #e = SpriteEntity(texture=TM.get('rtm.png'))
 #SpriteEntity(texture=TM.get('rtm.png')).set_parent(e)
+
+#e = ScreenSpriteEntity(texture=TM.get('rtm.png'))
+#e.move(sf.Vector2(100,0))
 
 clock = sf.Clock()
 Input.define_axis('horizontal', sf.Keyboard.RIGHT, sf.Keyboard.LEFT)
