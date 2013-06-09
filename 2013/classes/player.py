@@ -11,13 +11,14 @@ import sfml as sf
 
 
 class Player(AnimatorEntity):
-    last_hor = 0
-    last_ver = 0
-
     def __init__(self):
         super(Player, self).__init__(path='animations/player/girl_right.png', quantity=2, interval=0.3)
         self.gen_clip(path='animations/player/girl_left.png', quantity=2, interval=0.3)
         self.speed = 2.5
+        
+        self.gen_clip(path='animations/player/girl_top.png', quantity=2, interval=0.3)
+        self.gen_clip(path='animations/player/girl_bottom.png', quantity=2, interval=0.3)
+        
         self.light = LightCircle()
         self.light.set_parent(self)
         collider_height = 0.3
@@ -34,6 +35,16 @@ class Player(AnimatorEntity):
         super(Player, self).update(dt=dt)
         hor = Input.get_axis('horizontal')
         ver = Input.get_axis('vertical')
+
+        if(hor < 0):
+          self.play(1)
+        elif(hor > 0):
+          self.play(0)
+        elif(ver < 0):
+          self.play(2)
+        elif(ver > 0):
+          self.play(3)
+
         input = V2.normalize(sf.Vector2(hor, ver))
 
         self.position = self.collider.move(input * dt * self.speed)
