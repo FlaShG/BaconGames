@@ -4,22 +4,24 @@
 from classes.input import Input
 from classes.entity import Entity, SpriteEntity, ScreenSpriteEntity
 from classes.texturemanager import TextureManager as TM
+from classes.animation import AnimatorEntity
 import sfml as sf
 
-class Player(SpriteEntity):
+class Player(AnimatorEntity):
     def __init__(self):
-        super(Player, self).__init__(texture=TM.get('player.png'))
+        super(Player, self).__init__(path='animations/player/girl', quantity=2, interval=0.3)
         self.speed = 4
         self.light = LightCircle()
         self.light.set_parent(self)
 
 
     def update(self, dt):
+        super(Player, self).update(dt=dt)
         hor = Input.get_axis('horizontal')
         ver = Input.get_axis('vertical')
         self.move(sf.Vector2(hor, ver)*dt*self.speed)
-        
-        
+
+
 
 class LightCircle(Entity):
     def __init__(self):
