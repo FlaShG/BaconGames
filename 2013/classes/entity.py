@@ -148,3 +148,14 @@ class ScreenSpriteEntity(SpriteEntity):
         return sf.Vector2((self._ratio.x*1.0) / self.texture_rectangle.width * (window.width if self.fullscreen else window.height),
                                               (self._ratio.y*1.0) / self.texture_rectangle.height * window.height)
                                               
+
+class TextEntity(Entity):
+    def __init__(self, text):
+        self.text = sf.Text(text)
+        self.__renderstate = sf.RenderStates()
+        
+    def draw(self, window, transform):
+        self.__renderstate.transform = transform * self.global_transform
+        window.draw(self.text, self.__renderstate)
+        
+        

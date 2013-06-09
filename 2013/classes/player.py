@@ -7,6 +7,7 @@ from classes.texturemanager import TextureManager as TM
 from classes.animation import AnimatorEntity
 from classes.collider import Collider
 from classes.V2 import V2
+from classes.scenes import Scenes
 import sfml as sf
 
 
@@ -67,7 +68,7 @@ class Player(AnimatorEntity):
             self.sprite.color = sf.Color.WHITE if self.light_on else sf.Color(128,128,128)
 
     def kill(self):
-        print("sheeet")
+        Scenes.game_over()
 
     def on_collision(self, other):
         pass

@@ -7,6 +7,7 @@ from classes.entity import SpriteEntity
 from classes.scene import Scene
 from classes.input import Input
 from classes.tileimporter import TileImporter
+from classes.soundmanager import SoundManager as SM
 from classes.player import Player
 from classes.collider import Collider
 
@@ -19,9 +20,7 @@ window = sf.RenderWindow(sf.VideoMode(1024, 768), "Bacon Game")
 TileImporter.open('tiles/tileset.json')
 
 #Sound-Testing
-try: buffer = sf.SoundBuffer.from_file('sounds/player_idle_0.ogg')
-except IOError as error: exit()
-sound = sf.Sound(buffer)
+sound = SM.get('sounds/player_idle_0.ogg')
 sound.play()
 
 

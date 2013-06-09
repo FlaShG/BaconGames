@@ -4,8 +4,6 @@
 import math
 
 
-import math
-
 class V2(object):
     @staticmethod
     def distance(a,b):
