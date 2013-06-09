@@ -1,3 +1,6 @@
+"""
+/classes/entity.py
+"""
 import sfml as sf
 from classes.input import Input
 

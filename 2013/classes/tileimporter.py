@@ -1,3 +1,6 @@
+"""
+/classes/tileimporter.py
+"""
 import sfml as sf
 import json
 from classes.tilegroup import TileGroup

@@ -1,3 +1,6 @@
+"""
+/classes/scene.py
+"""
 import sfml as sf
 from classes.entity import Object, Entity
 from collections import OrderedDict

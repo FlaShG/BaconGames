@@ -1,3 +1,6 @@
+"""
+/classes/player.py
+"""
 from classes.input import Input
 from classes.entity import Entity, SpriteEntity, ScreenSpriteEntity
 from classes.texturemanager import TextureManager as TM

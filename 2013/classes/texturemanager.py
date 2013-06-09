@@ -1,3 +1,6 @@
+"""
+/classes/texturemanager.py
+"""
 import sfml as sf
 
 class TextureManager():

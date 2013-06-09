@@ -1,3 +1,6 @@
+"""
+/classes/tilegroup.py
+"""
 import sfml as sf
 from classes.entity import Entity, SpriteEntity
 from classes.input import Input
