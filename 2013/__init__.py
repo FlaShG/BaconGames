@@ -1,3 +1,6 @@
+"""
+/__init__.py
+"""
 import sfml as sf
 from classes.texturemanager import TextureManager as TM
 from classes.entity import ScreenSpriteEntity
