@@ -18,6 +18,13 @@ window = sf.RenderWindow(sf.VideoMode(1024, 768), "Bacon Game")
 
 TileImporter.open('tiles/tileset.json')
 
+#Sound-Testing
+try: buffer = sf.SoundBuffer.from_file('sounds/player_idle_0.ogg')
+except IOError as error: exit()
+sound = sf.Sound(buffer)
+sound.play()
+
+
 #SpriteEntity(texture=TM.get('rtm.png')).set_collider(Collider())
 
 #e = SpriteEntity(texture=TM.get('rtm.png'))
