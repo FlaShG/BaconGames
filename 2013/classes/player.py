@@ -14,7 +14,7 @@ class Player(AnimatorEntity):
     instance = None
 
     def __init__(self):
-        super(Player, self).__init__({'path':'animations/player/girl_right.png', 'quantity':2, 'interval':0.2})
+        super(Player, self).__init__({'path':'animations/player/girl_right.png', 'quantity':2, 'interval':0.2, 'size':sf.Vector2(32,32)})
 
         self.light_circle = LightCircle()
 
@@ -29,9 +29,9 @@ class Player(AnimatorEntity):
 
         self.speed = 2.5
 
-        self.gen_clip(clip={'path':'animations/player/girl_left.png', 'quantity':2, 'interval':0.2})
-        self.gen_clip(clip={'path':'animations/player/girl_top.png', 'quantity':2, 'interval':0.2})
-        self.gen_clip(clip={'path':'animations/player/girl_bottom.png', 'quantity':2, 'interval':0.2})
+        self.gen_clip(clip={'path':'animations/player/girl_left.png', 'quantity':2, 'interval':0.2, 'size':sf.Vector2(32,32)})
+        self.gen_clip(clip={'path':'animations/player/girl_top.png', 'quantity':2, 'interval':0.2, 'size':sf.Vector2(32,32)})
+        self.gen_clip(clip={'path':'animations/player/girl_bottom.png', 'quantity':2, 'interval':0.2, 'size':sf.Vector2(32,32)})
 
         collider_height = 0.3
         self.collider = Collider(position=self.position,

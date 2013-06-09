@@ -23,10 +23,7 @@ class AnimatorEntity(SpriteEntity):
 
 
     def gen_clip(self, clip):
-        path = clip['path']
-        quantity = clip['quantity']
-        interval = clip['interval']
-        self.clips.append(dict(texture=TM.get(path), quantity=quantity, interval=interval))
+        self.clips.append(dict(texture=TM.get(clip['path']), quantity=clip['quantity'], interval=clip['interval'], size=clip['size']))
 
 
     def update(self, dt):
@@ -35,7 +32,7 @@ class AnimatorEntity(SpriteEntity):
         if(self.timer > self.clips[self.play_id]['interval']):
             self.timer = 0.0
             self.sprite.texture = self.clips[self.play_id]['texture']
-            self.texture_rectangle = sf.Rectangle((self.clip_id * 32, 0), (32, 32))
+            self.texture_rectangle = sf.Rectangle((self.clip_id * 32, 0), self.clips[self.play_id]['size'])
 
             if(self.clip_id == (self.clips[self.play_id]['quantity'] - 1)):
                 self.clip_id = 0
