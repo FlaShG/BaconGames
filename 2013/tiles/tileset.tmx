@@ -16,14 +16,19 @@
    eJzt10EKgCAQhWG3dYO6QR2g6P4Xq7amopCo8/4PZhMSPkbNnMtzZI6zivzalqdOr+amM2pPfU2QX5tK/sl9z7639shza+diaZ+trQvy1x3fUmj/+rUWvjN0V4qVtbOi1EhrpQb1/JeL7w0F6v0nvy2xu/Jf39beWetnKfJrU8ifykh++1L/d1vDefVAof8p5NdGfm3k12L9fxYAAAAAAAAAAAAARnEDVtkVMA==
   </data>
  </layer>
- <layer name="gamelogic" width="64" height="64">
+ <layer name="lying_objects" width="64" height="64">
   <data encoding="base64" compression="zlib">
-   eJzt2NsOgyAMgGF9/5fe1RLWjKMFe/i/ZJluBmgFBa4L9/376V0X1WgeIiljzRJ3LeaR+E/nyPo9iTBeWuN+9JnoPQerZnOXJU9vxbmr3tlyW9c/aeOJvGrU4bmfZ4//LdbeI7ItM/OjlTgivEsjxV97f2uWZ4l2+yzH+mX9nvTsaP/MOPSeP4yRfWLlWb1rTqxhpJ9r/+eJ1xifzEPkb/+Oa+eWc7JCjnVrczUvrOWr1a81y9Yoa2Qf8kRd2cyugbMqn43ePNmPlMce45dW5w3l98m6d5bTq0MeR7j/LbW8Rohfa+87o9V1Mfzwug4GAAAAAAAAAABADh8ZCwFz
+   eJztmEdPwzAYhiMxpXJjSvTGqgQ34AQXyoYTe9zYcGT8f/EixZKxEmc5Xn0f6VErt3H92V/8OU0SMgmn4AJc1HxvHW5YGZEbRPxiPgYBec2L1j9G5LUus+627wHfc3EH9uEu3HM8lrqIOc6a66L5P4Pn8AJetjI6v3mAj/AJPiuf1ZnP0PiEX/Ab/kjtHTjhZETtUHXd5mHXUF+2MVEHV+GagbG4wMT6bMFtA2MZJHyrpWoelLkvRuAoHIPjFX8vhlo6DWfgLJyreK2ulrogax/YbNBf0dk5r5bawnRdajJXtvC9FrtA9zygEvt/IrYYgsOuB6HhGC7leFKyD12uuM6jor2ql77uwwN4CI/StpUG/YaCiP8KXsMbeJu26eIPkax9T8T/Al/hG3xP29T4XedyG9zB5dREev/nvatBBYhvuSHnuem96sNwf7bgmfA/8jr6lr8+IepAT/stP6l7r8rXhRy/Sp09IKb4yxLr+uvIyw1xDgo5fhO1L+T4myCeh08TniFiRVcnQz3vEkIIIYQQQgghhBBCCCGEkHj4BeOXJFQ=
   </data>
  </layer>
- <layer name="objects" width="64" height="64">
+ <layer name="gamelogic" width="64" height="64">
   <data encoding="base64" compression="zlib">
-   eJztmkdPxDAQhS1RJbhRJbjRVoIbcIILS4cTvdzocKT8f/FWiiXLikvssZPNzic9bZSsJ57xeOxkVwghhqBh5dOE63q/MgVNQ0vQsjD7uQltZexXDlRfpf8yHm2lzGf92KdtDlLcTx1f07GJ3HMgRy7a6p8r/ntQF9qHDpL0Lj0yxmWxdsX/ArqErqBr7VpIPPuNJ+gZeoFetWsh8YwlVXxNdr+hH+gX+lPOT0CTFW3F9ENCEd+ye1S1uwAtGq7F9DFHPfRZB12sQxsEfakDihjvQLsEfakTfR6krt1NW0v1PPCZFyPQKDQGjVe8n20trYOQ8Z6BZqE5aL6iPdtamgO9f2V1YDvCvmvvbFpLU6L6TL22xMTKl9iaVOaz7/sQivvHkmI/YHse0GnjO5FU2HKl7jxycQqtGHTmacOWK3XnkatWdYrPQ+gIOoZOinNrEXZTE5JXZW2k/zfQLXQH3RfndP+blMsh9bGsjfT/DXqHPqDP4pzuf925nIIHaLWQUI57eqxgp0m50SN3X0JzI9VvM2qey1pFNUZfBDYkrnlMuQ+y2Wpa/uZAHcc21jYq5DrQsX6rmehz1TfP1XZU/lPNsRg7IfWEyn+qWpbqXbEa1xTjXyc+OWOKq9wH9bP/FDnT838Q10n5PHwu2v8fikHFtqel3O8yDMMwDMMwDMMwDMMwDMMwDMMwTAj/jewm5A==
+   eJzt2MkOwyAMRdHk/3+6KySKGsCWUzzcI1VdJIp4ZkyuC/f9/Vvdl9VuHTLps1bK3Ujz/7tG3vskw3yZzfvdNTF6DbSktatSp2w5pXlm93uvjUX7vGecqZ7/FG/7yNgWyflIkyPDXpop/9P+bfk8T6zb5zlr471PTpDMQ+pXwzgmNGu15zPxzji3vhZJhYzNat9fnQlOj+U3jHPd21ktCm/1mo1ry2dH4q2PTpO+A1fVr43RaNv8a/2ImH+k/X7R/1eQtf9nnsZGhvxW374r0r4XI45K78EAAAAAAAAAAACI5wPozAFP
+  </data>
+ </layer>
+ <layer name="flying_objects" width="64" height="64">
+  <data encoding="base64" compression="zlib">
+   eJzt2EsKhDAQBcCG8f5ndtyJEJWZGNp0FYgLXfTnxYUREZ/vtezuLVfPZ1Glz02lXnsYPS/7ed7Z98/8f2ee8+i5t+wZyF4fjHA8B85FLb33nT0/2et7QsWer9z9HxI334GNrPAG/+ZUzmnJlo1MtWSRbUeZmA0VyDktM2dj5t5GMkcAAAAAAACAsVaAVQDz
   </data>
  </layer>
 </map>
