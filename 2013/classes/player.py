@@ -20,10 +20,11 @@ class Player(AnimatorEntity):
         self.speed = 4
         self.light = LightCircle()
         self.light.set_parent(self)
-
-        size = sf.Vector2(1,1)*0.8
-        self.collider = Collider(position=self.position, size=size)
-        self.scale(size)
+        collider_height = 0.3
+        self.collider = Collider(position=self.position,
+                                 size=sf.Vector2(0.2,collider_height),
+                                 offset=sf.Vector3(0,(1-collider_height)/2.0))
+        self.scale(sf.Vector2(1,1)*0.8)
 
     def set_position(self, pos):
         self.position = pos

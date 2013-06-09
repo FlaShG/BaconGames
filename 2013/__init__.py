@@ -22,7 +22,7 @@ SpriteEntity(texture=TM.get('rtm.png')).set_collider(Collider())
 
 e = SpriteEntity(texture=TM.get('rtm.png'))
 e.set_collider(Collider())
-e.set_position(sf.Vector2(2,0))
+e.set_position(sf.Vector2(2,-4))
 #SpriteEntity(texture=TM.get('rtm.png')).set_parent(e)
 
 #e = ScreenSpriteEntity(texture=TM.get('rtm.png'))
