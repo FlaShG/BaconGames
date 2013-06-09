@@ -11,8 +11,13 @@ import sfml as sf
 
 
 class Player(AnimatorEntity):
+    instance = None
+
     def __init__(self):
         super(Player, self).__init__(path='animations/player/girl_right.png', quantity=2, interval=0.2)
+        
+        instance = self
+        
         self.gen_clip(path='animations/player/girl_left.png', quantity=2, interval=0.2)
         self.speed = 2.5
         
