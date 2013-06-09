@@ -41,10 +41,6 @@ class Player(AnimatorEntity):
                                  offset=sf.Vector3(0,(1-collider_height)/2.0))
         self.scale(sf.Vector2(1,1)*0.8)
 
-    def set_position(self, pos):
-        self.position = pos
-        self.collider.position = pos
-
     def update(self, dt):
         super(Player, self).update(dt=dt)
         hor = Input.get_axis('horizontal')
