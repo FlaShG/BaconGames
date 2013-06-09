@@ -15,14 +15,21 @@ class Player(SpriteEntity):
         hor = Input.get_axis('horizontal')
         ver = Input.get_axis('vertical')
         self.move(sf.Vector2(hor, ver)*dt*self.speed)
+        
+        
 
 class LightCircle(Entity):
     def __init__(self):
         super(LightCircle, self).__init__()
         self.circle = ScreenSpriteEntity(texture = TM.get('circle.png'), layer=50, fullscreen=False)
-        #self.block_left = ScreenSpriteEntity(texture = TM.get('white.png'),
-        #                                     color = sf.Color.BLACK,
-        #                                     layer=50,
-        #                                     fullscreen=False)
-        #self.block_left.transform.translate(sf.Vector2(10000000,0))
+        self.block_left = ScreenSpriteEntity(texture = TM.get('white.png'),
+                                             color = sf.Color.BLACK,
+                                             layer=50,
+                                             fullscreen=False)
+        self.block_left.move(sf.Vector2(0.5,0))
+        self.block_right = ScreenSpriteEntity(texture = TM.get('white.png'),
+                                              color = sf.Color.BLACK,
+                                              layer=50,
+                                              fullscreen=False)
+        self.block_right.move(sf.Vector2(-0.5,0))
     
