@@ -11,13 +11,10 @@ import sfml as sf
 
 
 class Player(AnimatorEntity):
-    def __init__(self):
-        super(Player, self).__init__(path='animations/player/girl_right.png', quantity=2, interval=0.3)
-        self.gen_clip(path='animations/player/girl_left.png', quantity=2, interval=0.3)
-        self.gen_clip(path='animations/player/girl_top.png', quantity=2, interval=0.3)
-        self.gen_clip(path='animations/player/girl_bottom.png', quantity=2, interval=0.3)
+    instance = None
 
-        self.speed = 4
+    def __init__(self):
+        super(Player, self).__init__(path='animations/player/girl_right.png',    quantity=2, interval=0.2)
 
         self.light_circle = LightCircle()
         self.no_light_circle = NoLightCircle()
@@ -26,6 +23,14 @@ class Player(AnimatorEntity):
         self.no_light_circle.enabled = False
         self.light_on = True
 
+        instance = self
+        
+        self.gen_clip(path='animations/player/girl_left.png', quantity=2, interval=0.2)
+        self.speed = 2.5
+        
+        self.gen_clip(path='animations/player/girl_top.png', quantity=2, interval=0.2)
+        self.gen_clip(path='animations/player/girl_bottom.png', quantity=2, interval=0.2)
+        
         collider_height = 0.3
         self.collider = Collider(position=self.position,
                                  size=sf.Vector2(0.2,collider_height),

@@ -23,7 +23,7 @@
  </layer>
  <layer name="gamelogic" width="64" height="64">
   <data encoding="base64" compression="zlib">
-   eJzt2MkOwyAMRdHk/3+6KySKGsCWUzzcI1VdJIp4ZkyuC/f9/Vvdl9VuHTLps1bK3Ujz/7tG3vskw3yZzfvdNTF6DbSktatSp2w5pXlm93uvjUX7vGecqZ7/FG/7yNgWyflIkyPDXpop/9P+bfk8T6zb5zlr471PTpDMQ+pXwzgmNGu15zPxzji3vhZJhYzNat9fnQlOj+U3jHPd21ktCm/1mo1ry2dH4q2PTpO+A1fVr43RaNv8a/2ImH+k/X7R/1eQtf9nnsZGhvxW374r0r4XI45K78EAAAAAAAAAAACI5wPozAFP
+   eJzt2NsKgzAQRVGl///PfQrYUJPMMJq57AWlD4rkTK56HDjP39/svqxW65DJNWul3I00/9s18t4nGebLaN6vronRa6AlrV2VOmXLKc0zut97bSza5z3jSPX8u3jbR/q2SM5HmhwZ9tJM+e/2b8vneWLdPs9ZG+99soNkHlK/GvoxoVmrPZ+JV8a59bVIKmRsZvv+7Eyweyw/oZ/r3s5qb/okOgOOxrXlsyPx1ke7Sd+Bq7qujdFo2/xv/YiYv6f9fnH9ryBr/4/cjY0M+a2+fVekfS9GHJXegwEAAAAAAAAAABDPF4QKAVM=
   </data>
  </layer>
  <layer name="flying_objects" width="64" height="64">

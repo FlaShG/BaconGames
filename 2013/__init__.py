@@ -14,15 +14,15 @@ from classes.collider import Collider
 #window = sf.RenderWindow(sf.VideoMode(640, 480), "Bacon Game")
 window = sf.RenderWindow(sf.VideoMode(1024, 768), "Bacon Game")
 
-scene = Scene()
+#scene = Scene()
 
-tiles = TileImporter.open('tiles/tileset.json')
+TileImporter.open('tiles/tileset.json')
 
-SpriteEntity(texture=TM.get('rtm.png')).set_collider(Collider())
+#SpriteEntity(texture=TM.get('rtm.png')).set_collider(Collider())
 
-e = SpriteEntity(texture=TM.get('rtm.png'))
-e.set_collider(Collider())
-e.set_position(sf.Vector2(2,-4))
+#e = SpriteEntity(texture=TM.get('rtm.png'))
+#e.set_collider(Collider())
+#e.set_position(sf.Vector2(2,-4))
 #SpriteEntity(texture=TM.get('rtm.png')).set_parent(e)
 
 #e = ScreenSpriteEntity(texture=TM.get('rtm.png'))
@@ -32,8 +32,8 @@ clock = sf.Clock()
 Input.define_axis('horizontal', sf.Keyboard.RIGHT, sf.Keyboard.LEFT)
 Input.define_axis('vertical', sf.Keyboard.DOWN, sf.Keyboard.UP)
 
-player = Player()
-scene.camera.set_parent(player)
+#player = Player()
+#scene.camera.set_parent(player)
 
 # start the game loop
 while window.is_open:
@@ -52,6 +52,6 @@ while window.is_open:
     clock.restart()
 
     window.clear() # clear screen
-    scene.process(window, dt.seconds)
+    Scene.current().process(window, dt.seconds)
 
     window.display() # update the window
