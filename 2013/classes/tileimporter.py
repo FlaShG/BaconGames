@@ -6,10 +6,13 @@ import json
 from classes.tilegroup import TileGroup
 from classes.entity import Entity
 from classes.collider import Collider
+from classes.scene import Scene
+from classes.player import Player
 
 class TileImporter():
     @staticmethod
     def open(filename):
+        Scene()
         return TileImporter.parse(open(filename))
 
     @staticmethod
@@ -48,10 +51,14 @@ class TileImporter():
                         
                 id = data - t['firstgid'] +1
                 
-                if id==1:
+                if id==1: #block
                     c = Entity()
                     c.set_collider(Collider())
                     c.set_position(sf.Vector2(x,y))
+                elif id==3: #player spawn
+                    p = Player()
+                    p.set_position(sf.Vector2(x,y))
+                    Scene.current().camera.set_parent(p)
                 
             x += 1
             if(x >= layer['width']):

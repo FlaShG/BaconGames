@@ -49,6 +49,10 @@ class Scene(Object):
         for layer in self.entityset:
             for e in self.entityset[layer]:
                 e.ondraw(window, transform)
+                
+    @staticmethod
+    def current():
+        return Object.root
             
             
 class Camera(Entity):
