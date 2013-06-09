@@ -8,7 +8,7 @@ from classes.entity import Entity
 from classes.collider import Collider
 from classes.scene import Scene
 from classes.player import Player
-from classes.monster import Blob
+from classes.monster import Blob, Purple, Witch
 
 class TileImporter():
     @staticmethod
@@ -28,7 +28,7 @@ class TileImporter():
             tilesets.append(t)
 
         tilesets.sort(key=lambda x: x['firstgid'], reverse=True)
-        
+
         for l in data['layers']:
             if(l['type'] == 'tilelayer'):
                 if(l['name'] == 'gamelogic'):
@@ -42,16 +42,16 @@ class TileImporter():
     def gamelogic(layer, tilesets):
         x = 0
         y = 0
-    
+
         for data in layer['data']:
             if data > 0:
                 for t in tilesets:
                     if(t['firstgid'] <= data):
                         tileset = t
                         break;
-                        
+
                 id = data - t['firstgid'] +1
-                
+
                 if id==1: #block
                     c = Entity()
                     c.set_collider(Collider())
@@ -59,11 +59,17 @@ class TileImporter():
                 elif id==2: #blob spawn
                     m = Blob()
                     m.set_position(sf.Vector2(x,y))
+                elif id==6: #purple spawn
+                    m = Purple()
+                    m.set_position(sf.Vector2(x,y))
+                elif id==10: #purple spawn
+                    m = Witch()
+                    m.set_position(sf.Vector2(x,y))
                 elif id==3: #player spawn
                     p = Player()
                     p.set_position(sf.Vector2(x,y))
                     Scene.current().camera.set_parent(p)
-                
+
             x += 1
             if(x >= layer['width']):
                 x = 0
