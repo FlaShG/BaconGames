@@ -37,6 +37,7 @@ class Player(AnimatorEntity):
         self.collider = Collider(position=self.position,
                                  size=sf.Vector2(0.2,collider_height),
                                  offset=sf.Vector3(0,(1-collider_height)/2.0))
+        self.collider.event_handler = self
         self.scale(sf.Vector2(1,1)*0.8)
 
     def update(self, dt):
@@ -64,6 +65,12 @@ class Player(AnimatorEntity):
             self.no_light_circle.enabled = not self.light_on
             Player.instance.set_layer(80 if not self.light_on else 0)
             self.sprite.color = sf.Color.WHITE if self.light_on else sf.Color(128,128,128)
+            
+    def kill(self):
+        print("sheeet")
+    
+    def on_collision(self, other):
+        pass
         
 
 class LightCircle(Entity):
