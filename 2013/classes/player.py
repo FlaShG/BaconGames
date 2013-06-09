@@ -14,26 +14,24 @@ class Player(AnimatorEntity):
     instance = None
 
     def __init__(self):
-        super(Player, self).__init__(path='animations/player/girl_right.png',    quantity=2, interval=0.2)
+        super(Player, self).__init__({'path':'animations/player/girl_right.png', 'quantity':2, 'interval':0.2})
 
         self.light_circle = LightCircle()
-        self.light_circle.set_parent(self)
         
         self.no_light_circle = ScreenSpriteEntity(texture=TM.get('white.png'),
                                                   color=sf.Color.BLACK,
                                                   fullscreen=True,
                                                   layer=51)
-        self.no_light_circle.set_parent(self)
         self.no_light_circle.enabled = False
         self.light_on = True
 
         Player.instance = self
         
-        self.gen_clip(path='animations/player/girl_left.png', quantity=2, interval=0.2)
         self.speed = 2.5
         
-        self.gen_clip(path='animations/player/girl_top.png', quantity=2, interval=0.2)
-        self.gen_clip(path='animations/player/girl_bottom.png', quantity=2, interval=0.2)
+        self.gen_clip({'path':'animations/player/girl_left.png', 'quantity':2, 'interval':0.2})
+        self.gen_clip({'path':'animations/player/girl_top.png', 'quantity':2, 'interval':0.2})
+        self.gen_clip({'path':'animations/player/girl_bottom.png', 'quantity':2, 'interval':0.2})
         
         collider_height = 0.3
         self.collider = Collider(position=self.position,
@@ -65,6 +63,7 @@ class Player(AnimatorEntity):
             self.light_on = not self.light_on
             self.no_light_circle.enabled = not self.light_on
             Player.instance.set_layer(80 if not self.light_on else 0)
+            self.sprite.color = sf.Color.WHITE if self.light_on else sf.Color(128,128,128)
         
 
 class LightCircle(Entity):

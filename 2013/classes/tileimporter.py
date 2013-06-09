@@ -8,6 +8,7 @@ from classes.entity import Entity
 from classes.collider import Collider
 from classes.scene import Scene
 from classes.player import Player
+from classes.monster import Blob
 
 class TileImporter():
     @staticmethod
@@ -55,6 +56,9 @@ class TileImporter():
                     c = Entity()
                     c.set_collider(Collider())
                     c.set_position(sf.Vector2(x,y))
+                elif id==2: #blob spawn
+                    m = Blob()
+                    m.set_position(sf.Vector2(x,y))
                 elif id==3: #player spawn
                     p = Player()
                     p.set_position(sf.Vector2(x,y))

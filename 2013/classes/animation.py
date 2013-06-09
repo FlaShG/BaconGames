@@ -12,9 +12,12 @@ class AnimatorEntity(SpriteEntity):
     clip_id = 0
     play_id = 0
 
-    def __init__(self, path, quantity, interval):
+    def __init__(self, clip):
+        path = clip['path']
+        quantity = clip['quantity']
+        interval = clip['interval']
         super(AnimatorEntity, self).__init__(texture=TM.get(path))
-        self.gen_clip(path=path, quantity=quantity, interval=interval)
+        self.gen_clip(clip)
         self.timer = 100
 
 
@@ -24,7 +27,10 @@ class AnimatorEntity(SpriteEntity):
             self.timer = 100
 
 
-    def gen_clip(self, path, quantity, interval):
+    def gen_clip(self, clip):
+        path = clip['path']
+        quantity = clip['quantity']
+        interval = clip['interval']
         self.clips.append(dict(texture=TM.get(path), quantity=quantity, interval=interval))
 
 
